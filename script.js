@@ -1,73 +1,65 @@
-/* --- Global configuration --- */
-const KEYPOINT_API_URL = "https://serverless.roboflow.com/atc-jqhue/2";
-const API_KEY = "uzkuNWY0Fg8F6oMZzaX9";
-const CACHE_NAME = "cattle-health-v1.2";
+document.addEventListener('DOMContentLoaded', () => {
 
-let isOnline = navigator.onLine;
-let deferredPrompt = null;
-let isVoiceActive = false;
-let recognition = null;
-let currentAnalysis = null;
+    /**
+     * Animates a number counting up from 0 to a target value.
+     * @param {HTMLElement} element - The element whose textContent will be animated.
+     * @param {number} target - The final number.
+     * @param {number} decimals - Number of decimal places.
+     * @param {string} unit - A unit to append (e.g., '%', 'px').
+     */
+    function animateCountUp(element, target, decimals = 0, unit = '') {
+        let current = 0;
+        const duration = 2000; // Animation duration in ms
+        const stepTime = 20;   // Update interval in ms
+        const steps = duration / stepTime;
+        const increment = (target - current) / steps;
 
-/* -------- Service-worker registration -------- */
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", async () => {
-    try {
-      const reg = await navigator.serviceWorker.register("/sw.js");
-      reg.addEventListener("updatefound", () => {
-        const nw = reg.installing;
-        nw.addEventListener("statechange", () => {
-          if (nw.state === "installed" && navigator.serviceWorker.controller) {
-            showUpdateAvailable();
-          }
-        });
-      });
-    } catch (e) { console.error("SW register failed", e); }
-  });
-}
-
-/* -------- PWA install prompt -------- */
-window.addEventListener("beforeinstallprompt", e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  setTimeout(() => {
-    if (!window.matchMedia("(display-mode: standalone)").matches) {
-      document.getElementById("installPrompt").classList.add("show");
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = `${current.toFixed(decimals)}${unit}`;
+        }, stepTime);
     }
-  }, 10000);
-});
 
-async function installPWA(){
-  if(!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const {outcome}=await deferredPrompt.userChoice;
-  if(outcome==="accepted"){speak("Application installed successfully");}
-  deferredPrompt=null;
-  document.getElementById("installPrompt").classList.remove("show");
-}
-function dismissInstall(){document.getElementById("installPrompt").classList.remove("show");}
+    /**
+     * Animates the circular progress bar based on a score out of 10.
+     * @param {HTMLElement} progressCircle - The SVG circle element.
+     * @param {number} targetScore - The score to represent (0-10).
+     */
+    function animateProgressCircle(progressCircle, targetScore) {
+        if (!progressCircle) return;
+        const radius = progressCircle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+        const offset = circumference - (targetScore / 10) * circumference;
+        
+        progressCircle.style.strokeDashoffset = offset;
+    }
 
-/* -------- Network-status handling -------- */
-window.addEventListener("online", ()=>{isOnline=true;updateConnectionStatus();syncOfflineData();speak("Connection restored");});
-window.addEventListener("offline",()=>{isOnline=false;updateConnectionStatus();speak("Working offline mode activated");});
+    // --- Main Function to Run All Animations ---
+    function runAnimations() {
+        // Score Dial Animation
+        const scoreDisplay = document.getElementById('score-display');
+        const scoreProgress = document.getElementById('score-progress');
+        const scoreValue = parseFloat(scoreDisplay.dataset.value);
+        
+        animateCountUp(scoreDisplay, scoreValue, 1);
+        animateProgressCircle(scoreProgress, scoreValue);
 
-function updateConnectionStatus(){
-  const status=document.getElementById("connectionStatus");
-  const banner=document.getElementById("offlineBanner");
-  if(isOnline){status.classList.remove("offline");status.querySelector(".status-text").textContent="Online";banner.classList.remove("show");}
-  else{status.classList.add("offline");status.querySelector(".status-text").textContent="Offline";banner.classList.add("show");}
-}
+        // Metrics Animation
+        const bodyLength = document.getElementById('body-length-value');
+        const hipWidth = document.getElementById('hip-width-value');
+        const toplineAngle = document.getElementById('topline-angle-value');
+        const confidence = document.getElementById('confidence-value');
 
-/* -------- Voice-recognition & TTS helpers -------- */
-/* … include full speech-recognition, TTS, command-handler, etc. … */
+        animateCountUp(bodyLength, parseFloat(bodyLength.dataset.value), 2);
+        animateCountUp(hipWidth, parseInt(hipWidth.dataset.value), 0, ' px');
+        animateCountUp(toplineAngle, parseFloat(toplineAngle.dataset.value), 1, '°');
+        animateCountUp(confidence, parseInt(confidence.dataset.value), 0, '%');
+    }
 
-/* -------- File upload & AI analysis -------- */
-/* … include handleImageUpload, analyzeHealth, getKeypoints, deriveHealthMetrics, displayResults, etc. … */
-
-/* -------- Community & finance helpers -------- */
-/* … include askQuestion, shareSuccess, addExpense, exportData, etc. … */
-
-/* -------- Utility & bootstrapping -------- */
-document.addEventListener("DOMContentLoaded",()=>{updateConnectionStatus();initializeVoiceRecognition();updateDashboardStats();
-  setTimeout(()=>speak("Welcome to CattleHealth Pro. Your AI-powered cattle health companion."),2000);
+    // Run animations after a short delay for a smoother effect
+    setTimeout(runAnimations, 500);
 });
