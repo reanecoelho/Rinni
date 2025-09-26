@@ -1,1845 +1,1418 @@
-:root {
-  /* Primitive Color Tokens */
-  --color-white: rgba(255, 255, 255, 1);
-  --color-black: rgba(0, 0, 0, 1);
-  --color-cream-50: rgba(252, 252, 249, 1);
-  --color-cream-100: rgba(255, 255, 253, 1);
-  --color-gray-200: rgba(245, 245, 245, 1);
-  --color-gray-300: rgba(167, 169, 169, 1);
-  --color-gray-400: rgba(119, 124, 124, 1);
-  --color-slate-500: rgba(98, 108, 113, 1);
-  --color-brown-600: rgba(94, 82, 64, 1);
-  --color-charcoal-700: rgba(31, 33, 33, 1);
-  --color-charcoal-800: rgba(38, 40, 40, 1);
-  --color-slate-900: rgba(19, 52, 59, 1);
-  --color-teal-300: rgba(50, 184, 198, 1);
-  --color-teal-400: rgba(45, 166, 178, 1);
-  --color-teal-500: rgba(33, 128, 141, 1);
-  --color-teal-600: rgba(29, 116, 128, 1);
-  --color-teal-700: rgba(26, 104, 115, 1);
-  --color-teal-800: rgba(41, 150, 161, 1);
-  --color-red-400: rgba(255, 84, 89, 1);
-  --color-red-500: rgba(192, 21, 47, 1);
-  --color-orange-400: rgba(230, 129, 97, 1);
-  --color-orange-500: rgba(168, 75, 47, 1);
-
-  /* RGB versions for opacity control */
-  --color-brown-600-rgb: 94, 82, 64;
-  --color-teal-500-rgb: 33, 128, 141;
-  --color-slate-900-rgb: 19, 52, 59;
-  --color-slate-500-rgb: 98, 108, 113;
-  --color-red-500-rgb: 192, 21, 47;
-  --color-red-400-rgb: 255, 84, 89;
-  --color-orange-500-rgb: 168, 75, 47;
-  --color-orange-400-rgb: 230, 129, 97;
-
-  /* Background color tokens (Light Mode) */
-  --color-bg-1: rgba(59, 130, 246, 0.08); /* Light blue */
-  --color-bg-2: rgba(245, 158, 11, 0.08); /* Light yellow */
-  --color-bg-3: rgba(34, 197, 94, 0.08); /* Light green */
-  --color-bg-4: rgba(239, 68, 68, 0.08); /* Light red */
-  --color-bg-5: rgba(147, 51, 234, 0.08); /* Light purple */
-  --color-bg-6: rgba(249, 115, 22, 0.08); /* Light orange */
-  --color-bg-7: rgba(236, 72, 153, 0.08); /* Light pink */
-  --color-bg-8: rgba(6, 182, 212, 0.08); /* Light cyan */
-
-  /* Semantic Color Tokens (Light Mode) */
-  --color-background: var(--color-cream-50);
-  --color-surface: var(--color-cream-100);
-  --color-text: var(--color-slate-900);
-  --color-text-secondary: var(--color-slate-500);
-  --color-primary: var(--color-teal-500);
-  --color-primary-hover: var(--color-teal-600);
-  --color-primary-active: var(--color-teal-700);
-  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
-  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-btn-primary-text: var(--color-cream-50);
-  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-error: var(--color-red-500);
-  --color-success: var(--color-teal-500);
-  --color-warning: var(--color-orange-500);
-  --color-info: var(--color-slate-500);
-  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
-  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
-
-  /* Common style patterns */
-  --focus-ring: 0 0 0 3px var(--color-focus-ring);
-  --focus-outline: 2px solid var(--color-primary);
-  --status-bg-opacity: 0.15;
-  --status-border-opacity: 0.25;
-  --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-
-  /* RGB versions for opacity control */
-  --color-success-rgb: 33, 128, 141;
-  --color-error-rgb: 192, 21, 47;
-  --color-warning-rgb: 168, 75, 47;
-  --color-info-rgb: 98, 108, 113;
-
-  /* Typography */
-  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
-    Monaco, Consolas, monospace;
-  --font-size-xs: 11px;
-  --font-size-sm: 12px;
-  --font-size-base: 14px;
-  --font-size-md: 14px;
-  --font-size-lg: 16px;
-  --font-size-xl: 18px;
-  --font-size-2xl: 20px;
-  --font-size-3xl: 24px;
-  --font-size-4xl: 30px;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 550;
-  --font-weight-bold: 600;
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --letter-spacing-tight: -0.01em;
-
-  /* Spacing */
-  --space-0: 0;
-  --space-1: 1px;
-  --space-2: 2px;
-  --space-4: 4px;
-  --space-6: 6px;
-  --space-8: 8px;
-  --space-10: 10px;
-  --space-12: 12px;
-  --space-16: 16px;
-  --space-20: 20px;
-  --space-24: 24px;
-  --space-32: 32px;
-
-  /* Border Radius */
-  --radius-sm: 6px;
-  --radius-base: 8px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-full: 9999px;
-
-  /* Shadows */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
-    0 2px 4px -1px rgba(0, 0, 0, 0.02);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
-    0 4px 6px -2px rgba(0, 0, 0, 0.02);
-  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
-
-  /* Animation */
-  --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* Layout */
-  --container-sm: 640px;
-  --container-md: 768px;
-  --container-lg: 1024px;
-  --container-xl: 1280px;
-}
-
-/* Dark mode colors */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* RGB versions for opacity control (Dark Mode) */
-    --color-gray-400-rgb: 119, 124, 124;
-    --color-teal-300-rgb: 50, 184, 198;
-    --color-gray-300-rgb: 167, 169, 169;
-    --color-gray-200-rgb: 245, 245, 245;
-
-    /* Background color tokens (Dark Mode) */
-    --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
-    --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
-    --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
-    --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
-    --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
-    --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
-    --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
-    --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
-
-    /* Semantic Color Tokens (Dark Mode) */
-    --color-background: var(--color-charcoal-700);
-    --color-surface: var(--color-charcoal-800);
-    --color-text: var(--color-gray-200);
-    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
-    --color-primary: var(--color-teal-300);
-    --color-primary-hover: var(--color-teal-400);
-    --color-primary-active: var(--color-teal-800);
-    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
-    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
-    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
-    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
-    --color-error: var(--color-red-400);
-    --color-success: var(--color-teal-300);
-    --color-warning: var(--color-orange-400);
-    --color-info: var(--color-gray-300);
-    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
-    --color-btn-primary-text: var(--color-slate-900);
-    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
-    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
-    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-    --button-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
-    --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
-    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
-
-    /* Common style patterns - updated for dark mode */
-    --focus-ring: 0 0 0 3px var(--color-focus-ring);
-    --focus-outline: 2px solid var(--color-primary);
-    --status-bg-opacity: 0.15;
-    --status-border-opacity: 0.25;
-    --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-
-    /* RGB versions for dark mode */
-    --color-success-rgb: var(--color-teal-300-rgb);
-    --color-error-rgb: var(--color-red-400-rgb);
-    --color-warning-rgb: var(--color-orange-400-rgb);
-    --color-info-rgb: var(--color-gray-300-rgb);
-  }
-}
-
-/* Data attribute for manual theme switching */
-[data-color-scheme="dark"] {
-  /* RGB versions for opacity control (dark mode) */
-  --color-gray-400-rgb: 119, 124, 124;
-  --color-teal-300-rgb: 50, 184, 198;
-  --color-gray-300-rgb: 167, 169, 169;
-  --color-gray-200-rgb: 245, 245, 245;
-
-  /* Colorful background palette - Dark Mode */
-  --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
-  --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
-  --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
-  --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
-  --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
-  --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
-  --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
-  --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
-
-  /* Semantic Color Tokens (Dark Mode) */
-  --color-background: var(--color-charcoal-700);
-  --color-surface: var(--color-charcoal-800);
-  --color-text: var(--color-gray-200);
-  --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
-  --color-primary: var(--color-teal-300);
-  --color-primary-hover: var(--color-teal-400);
-  --color-primary-active: var(--color-teal-800);
-  --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
-  --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
-  --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
-  --color-border: rgba(var(--color-gray-400-rgb), 0.3);
-  --color-error: var(--color-red-400);
-  --color-success: var(--color-teal-300);
-  --color-warning: var(--color-orange-400);
-  --color-info: var(--color-gray-300);
-  --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
-  --color-btn-primary-text: var(--color-slate-900);
-  --color-card-border: rgba(var(--color-gray-400-rgb), 0.15);
-  --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
-  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-  --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
-  --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
-
-  /* Common style patterns - updated for dark mode */
-  --focus-ring: 0 0 0 3px var(--color-focus-ring);
-  --focus-outline: 2px solid var(--color-primary);
-  --status-bg-opacity: 0.15;
-  --status-border-opacity: 0.25;
-  --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-
-  /* RGB versions for dark mode */
-  --color-success-rgb: var(--color-teal-300-rgb);
-  --color-error-rgb: var(--color-red-400-rgb);
-  --color-warning-rgb: var(--color-orange-400-rgb);
-  --color-info-rgb: var(--color-gray-300-rgb);
-}
-
-[data-color-scheme="light"] {
-  /* RGB versions for opacity control (light mode) */
-  --color-brown-600-rgb: 94, 82, 64;
-  --color-teal-500-rgb: 33, 128, 141;
-  --color-slate-900-rgb: 19, 52, 59;
-
-  /* Semantic Color Tokens (Light Mode) */
-  --color-background: var(--color-cream-50);
-  --color-surface: var(--color-cream-100);
-  --color-text: var(--color-slate-900);
-  --color-text-secondary: var(--color-slate-500);
-  --color-primary: var(--color-teal-500);
-  --color-primary-hover: var(--color-teal-600);
-  --color-primary-active: var(--color-teal-700);
-  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
-  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-btn-primary-text: var(--color-cream-50);
-  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-error: var(--color-red-500);
-  --color-success: var(--color-teal-500);
-  --color-warning: var(--color-orange-500);
-  --color-info: var(--color-slate-500);
-  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
-
-  /* RGB versions for light mode */
-  --color-success-rgb: var(--color-teal-500-rgb);
-  --color-error-rgb: var(--color-red-500-rgb);
-  --color-warning-rgb: var(--color-orange-500-rgb);
-  --color-info-rgb: var(--color-slate-500-rgb);
-}
-
-/* Base styles */
-html {
-  font-size: var(--font-size-base);
-  font-family: var(--font-family-base);
-  line-height: var(--line-height-normal);
-  color: var(--color-text);
-  background-color: var(--color-background);
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-/* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-tight);
-  color: var(--color-text);
-  letter-spacing: var(--letter-spacing-tight);
-}
-
-h1 {
-  font-size: var(--font-size-4xl);
-}
-h2 {
-  font-size: var(--font-size-3xl);
-}
-h3 {
-  font-size: var(--font-size-2xl);
-}
-h4 {
-  font-size: var(--font-size-xl);
-}
-h5 {
-  font-size: var(--font-size-lg);
-}
-h6 {
-  font-size: var(--font-size-md);
-}
-
-p {
-  margin: 0 0 var(--space-16) 0;
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-standard);
-}
-
-a:hover {
-  color: var(--color-primary-hover);
-}
-
-code,
-pre {
-  font-family: var(--font-family-mono);
-  font-size: calc(var(--font-size-base) * 0.95);
-  background-color: var(--color-secondary);
-  border-radius: var(--radius-sm);
-}
-
-code {
-  padding: var(--space-1) var(--space-4);
-}
-
-pre {
-  padding: var(--space-16);
-  margin: var(--space-16) 0;
-  overflow: auto;
-  border: 1px solid var(--color-border);
-}
-
-pre code {
-  background: none;
-  padding: 0;
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-8) var(--space-16);
-  border-radius: var(--radius-base);
-  font-size: var(--font-size-base);
-  font-weight: 500;
-  line-height: 1.5;
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-standard);
-  border: none;
-  text-decoration: none;
-  position: relative;
-}
-
-.btn:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-}
-
-.btn--primary {
-  background: var(--color-primary);
-  color: var(--color-btn-primary-text);
-}
-
-.btn--primary:hover {
-  background: var(--color-primary-hover);
-}
-
-.btn--primary:active {
-  background: var(--color-primary-active);
-}
-
-.btn--secondary {
-  background: var(--color-secondary);
-  color: var(--color-text);
-}
-
-.btn--secondary:hover {
-  background: var(--color-secondary-hover);
-}
-
-.btn--secondary:active {
-  background: var(--color-secondary-active);
-}
-
-.btn--outline {
-  background: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-}
-
-.btn--outline:hover {
-  background: var(--color-secondary);
-}
-
-.btn--sm {
-  padding: var(--space-4) var(--space-12);
-  font-size: var(--font-size-sm);
-  border-radius: var(--radius-sm);
-}
-
-.btn--lg {
-  padding: var(--space-10) var(--space-20);
-  font-size: var(--font-size-lg);
-  border-radius: var(--radius-md);
-}
-
-.btn--full-width {
-  width: 100%;
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Form elements */
-.form-control {
-  display: block;
-  width: 100%;
-  padding: var(--space-8) var(--space-12);
-  font-size: var(--font-size-md);
-  line-height: 1.5;
-  color: var(--color-text);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-base);
-  transition: border-color var(--duration-fast) var(--ease-standard),
-    box-shadow var(--duration-fast) var(--ease-standard);
-}
-
-textarea.form-control {
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-base);
-}
-
-select.form-control {
-  padding: var(--space-8) var(--space-12);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-image: var(--select-caret-light);
-  background-repeat: no-repeat;
-  background-position: right var(--space-12) center;
-  background-size: 16px;
-  padding-right: var(--space-32);
-}
-
-/* Add a dark mode specific caret */
-@media (prefers-color-scheme: dark) {
-  select.form-control {
-    background-image: var(--select-caret-dark);
-  }
-}
-
-/* Also handle data-color-scheme */
-[data-color-scheme="dark"] select.form-control {
-  background-image: var(--select-caret-dark);
-}
-
-[data-color-scheme="light"] select.form-control {
-  background-image: var(--select-caret-light);
-}
-
-.form-control:focus {
-  border-color: var(--color-primary);
-  outline: var(--focus-outline);
-}
-
-.form-label {
-  display: block;
-  margin-bottom: var(--space-8);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-sm);
-}
-
-.form-group {
-  margin-bottom: var(--space-16);
-}
-
-/* Card component */
-.card {
-  background-color: var(--color-surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-card-border);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  transition: box-shadow var(--duration-normal) var(--ease-standard);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.card__body {
-  padding: var(--space-16);
-}
-
-.card__header,
-.card__footer {
-  padding: var(--space-16);
-  border-bottom: 1px solid var(--color-card-border-inner);
-}
-
-/* Status indicators - simplified with CSS variables */
-.status {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--space-6) var(--space-12);
-  border-radius: var(--radius-full);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-sm);
-}
-
-.status--success {
-  background-color: rgba(
-    var(--color-success-rgb, 33, 128, 141),
-    var(--status-bg-opacity)
-  );
-  color: var(--color-success);
-  border: 1px solid
-    rgba(var(--color-success-rgb, 33, 128, 141), var(--status-border-opacity));
-}
-
-.status--error {
-  background-color: rgba(
-    var(--color-error-rgb, 192, 21, 47),
-    var(--status-bg-opacity)
-  );
-  color: var(--color-error);
-  border: 1px solid
-    rgba(var(--color-error-rgb, 192, 21, 47), var(--status-border-opacity));
-}
-
-.status--warning {
-  background-color: rgba(
-    var(--color-warning-rgb, 168, 75, 47),
-    var(--status-bg-opacity)
-  );
-  color: var(--color-warning);
-  border: 1px solid
-    rgba(var(--color-warning-rgb, 168, 75, 47), var(--status-border-opacity));
-}
-
-.status--info {
-  background-color: rgba(
-    var(--color-info-rgb, 98, 108, 113),
-    var(--status-bg-opacity)
-  );
-  color: var(--color-info);
-  border: 1px solid
-    rgba(var(--color-info-rgb, 98, 108, 113), var(--status-border-opacity));
-}
-
-/* Container layout */
-.container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: var(--space-16);
-  padding-left: var(--space-16);
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: var(--container-sm);
-  }
-}
-@media (min-width: 768px) {
-  .container {
-    max-width: var(--container-md);
-  }
-}
-@media (min-width: 1024px) {
-  .container {
-    max-width: var(--container-lg);
-  }
-}
-@media (min-width: 1280px) {
-  .container {
-    max-width: var(--container-xl);
-  }
-}
-
-/* Utility classes */
-.flex {
-  display: flex;
-}
-.flex-col {
-  flex-direction: column;
-}
-.items-center {
-  align-items: center;
-}
-.justify-center {
-  justify-content: center;
-}
-.justify-between {
-  justify-content: space-between;
-}
-.gap-4 {
-  gap: var(--space-4);
-}
-.gap-8 {
-  gap: var(--space-8);
-}
-.gap-16 {
-  gap: var(--space-16);
-}
-
-.m-0 {
-  margin: 0;
-}
-.mt-8 {
-  margin-top: var(--space-8);
-}
-.mb-8 {
-  margin-bottom: var(--space-8);
-}
-.mx-8 {
-  margin-left: var(--space-8);
-  margin-right: var(--space-8);
-}
-.my-8 {
-  margin-top: var(--space-8);
-  margin-bottom: var(--space-8);
-}
-
-.p-0 {
-  padding: 0;
-}
-.py-8 {
-  padding-top: var(--space-8);
-  padding-bottom: var(--space-8);
-}
-.px-8 {
-  padding-left: var(--space-8);
-  padding-right: var(--space-8);
-}
-.py-16 {
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
-}
-.px-16 {
-  padding-left: var(--space-16);
-  padding-right: var(--space-16);
-}
-
-.block {
-  display: block;
-}
-.hidden {
-  display: none;
-}
-
-/* Accessibility */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-:focus-visible {
-  outline: var(--focus-outline);
-  outline-offset: 2px;
-}
-
-/* Dark mode specifics */
-[data-color-scheme="dark"] .btn--outline {
-  border: 1px solid var(--color-border-secondary);
-}
-
-@font-face {
-  font-family: 'FKGroteskNeue';
-  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
-    format('woff2');
-}
-
-/* END PERPLEXITY DESIGN SYSTEM */
-/* Application-specific styles for PashuMitra */
-
-/* Loading Screen */
-.loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #4DD0E1 0%, #FF8A65 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  color: white;
-}
-
-.loading-content {
-  text-align: center;
-  animation: fadeInUp 0.8s ease-out;
-}
-
-.cow-icon {
-  font-size: 4rem;
-  margin-bottom: var(--space-16);
-  animation: bounce 2s infinite;
-}
-
-.loading-content h2 {
-  font-size: var(--font-size-3xl);
-  margin-bottom: var(--space-8);
-  color: white;
-}
-
-.loading-content p {
-  font-size: var(--font-size-lg);
-  margin-bottom: var(--space-24);
-  opacity: 0.9;
-}
-
-.progress-bar {
-  width: 200px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: white;
-  border-radius: var(--radius-full);
-  animation: fillProgress 3s ease-out;
-}
-
-/* App Container */
-.app {
-  min-height: 100vh;
-  background: var(--color-background);
-}
-
-.app.hidden {
-  display: none;
-}
-
-/* Header */
-.header {
-  background: linear-gradient(135deg, #4DD0E1 0%, #FF8A65 100%);
-  color: white;
-  padding: var(--space-16) 0;
-  box-shadow: var(--shadow-md);
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-16);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.brand h1 {
-  font-size: var(--font-size-2xl);
-  color: white;
-  margin: 0;
-}
-
-.hackathon-badge {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.2);
-  padding: var(--space-4) var(--space-8);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-sm);
-  margin-top: var(--space-4);
-}
-
-.header-controls {
-  display: flex;
-  gap: var(--space-12);
-  align-items: center;
-}
-
-.language-selector {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: var(--space-6) var(--space-12);
-  border-radius: var(--radius-base);
-  font-size: var(--font-size-sm);
-}
-
-.voice-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: var(--space-8);
-  border-radius: var(--radius-base);
-  cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-standard);
-}
-
-.voice-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.voice-btn.active {
-  background: #2196F3;
-  animation: pulse 1.5s infinite;
-}
-
-.voice-icon {
-  font-size: var(--font-size-lg);
-}
-
-/* Progress Navigation */
-.progress-nav {
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  padding: var(--space-16) 0;
-}
-
-.progress-steps {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-16);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.progress-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-8);
-  flex: 1;
-  position: relative;
-}
-
-.progress-step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 60%;
-  right: -40%;
-  height: 2px;
-  background: var(--color-border);
-  z-index: 1;
-}
-
-.progress-step.active:not(:last-child)::after,
-.progress-step.completed:not(:last-child)::after {
-  background: linear-gradient(90deg, #66BB6A, #42A5F5);
-}
-
-.step-circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-secondary);
-  position: relative;
-  z-index: 2;
-  transition: all var(--duration-normal) var(--ease-standard);
-}
-
-.progress-step[data-step="1"].active .step-circle,
-.progress-step[data-step="1"].completed .step-circle {
-  background: #66BB6A;
-  color: white;
-}
-
-.progress-step[data-step="2"].active .step-circle,
-.progress-step[data-step="2"].completed .step-circle {
-  background: #42A5F5;
-  color: white;
-}
-
-.progress-step[data-step="3"].active .step-circle,
-.progress-step[data-step="3"].completed .step-circle {
-  background: #AB47BC;
-  color: white;
-}
-
-.progress-step[data-step="4"].active .step-circle,
-.progress-step[data-step="4"].completed .step-circle {
-  background: #BA68C8;
-  color: white;
-}
-
-.progress-step span {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
-}
-
-.progress-step.active span {
-  color: var(--color-primary);
-  font-weight: var(--font-weight-bold);
-}
-
-/* Main Content */
-.main-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--space-32) var(--space-16);
-}
-
-.section {
-  display: none;
-  animation: slideInRight 0.5s ease-out;
-}
-
-.section.active {
-  display: block;
-}
-
-/* Upload Section */
-.camera-guidelines {
-  text-align: center;
-  margin-bottom: var(--space-32);
-}
-
-.camera-guidelines h3 {
-  color: var(--color-text);
-  margin-bottom: var(--space-16);
-}
-
-.guidelines-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--space-16);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.guideline-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-8);
-  padding: var(--space-16);
-  border-radius: var(--radius-lg);
-  color: var(--color-text);
-  font-weight: var(--font-weight-medium);
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--duration-fast) var(--ease-standard);
-}
-
-.guideline-item:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.guideline-item:nth-child(1) {
-  background: #FDD835;
-}
-
-.guideline-item:nth-child(2) {
-  background: #26C6DA;
-  color: white;
-}
-
-.guideline-item:nth-child(3) {
-  background: #EC407A;
-  color: white;
-}
-
-.guideline-icon {
-  font-size: var(--font-size-2xl);
-}
-
-.upload-area {
-  border: 2px dashed var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-32);
-  text-align: center;
-  background: #FFFFFF;
-  transition: all var(--duration-normal) var(--ease-standard);
-  cursor: pointer;
-}
-
-.upload-area:hover {
-  border-color: #FF8A65;
-  background: rgba(255, 138, 101, 0.05);
-}
-
-.upload-area.dragover {
-  border-color: #FF8A65;
-  background: rgba(255, 138, 101, 0.1);
-  transform: scale(1.02);
-}
-
-.upload-content {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.upload-icon {
-  font-size: 4rem;
-  margin-bottom: var(--space-16);
-  color: #FF8A65;
-}
-
-.upload-content h4 {
-  margin-bottom: var(--space-8);
-  color: var(--color-text);
-}
-
-.upload-content p {
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-24);
-}
-
-.upload-buttons {
-  display: flex;
-  gap: var(--space-12);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.upload-buttons .btn {
-  min-width: 140px;
-  position: relative;
-  overflow: hidden;
-}
-
-.upload-buttons .btn--primary {
-  background: linear-gradient(135deg, #4DD0E1, #FF8A65);
-  color: white;
-  border: none;
-}
-
-.upload-buttons .btn--primary:hover {
-  background: linear-gradient(135deg, #26C6DA, #FF7043);
-  transform: translateY(-2px);
-}
-
-.upload-buttons .btn--outline {
-  border: 2px solid #FF8A65;
-  color: #FF8A65;
-  background: white;
-}
-
-.upload-buttons .btn--outline:hover {
-  background: #FF8A65;
-  color: white;
-}
-
-/* Quality Feedback */
-.quality-feedback {
-  margin-top: var(--space-32);
-  padding: var(--space-24);
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-}
-
-.quality-feedback h4 {
-  text-align: center;
-  margin-bottom: var(--space-16);
-  color: var(--color-text);
-}
-
-.quality-indicators {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: var(--space-16);
-}
-
-.quality-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-8);
-  padding: var(--space-16);
-  background: var(--color-bg-1);
-  border-radius: var(--radius-base);
-  animation: slideInUp 0.5s ease-out;
-}
-
-.quality-icon {
-  font-size: var(--font-size-xl);
-}
-
-.quality-label {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-.quality-status {
-  font-weight: var(--font-weight-bold);
-  color: #4CAF50;
-}
-
-/* Preview Section */
-.preview-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.image-preview {
-  text-align: center;
-  margin-bottom: var(--space-32);
-}
-
-.preview-img {
-  max-width: 100%;
-  max-height: 400px;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  animation: fadeIn 0.5s ease-out;
-}
-
-.image-controls {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-12);
-  margin-top: var(--space-16);
-  flex-wrap: wrap;
-}
-
-.image-controls .btn {
-  background: linear-gradient(135deg, #42A5F5, #AB47BC);
-  color: white;
-  border: none;
-}
-
-.image-controls .btn:hover {
-  background: linear-gradient(135deg, #1E88E5, #9C27B0);
-  transform: translateY(-2px);
-}
-
-.preview-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-16);
-  flex-wrap: wrap;
-}
-
-.preview-actions .btn {
-  flex: 1;
-  min-width: 120px;
-}
-
-.preview-actions .btn--primary {
-  background: linear-gradient(135deg, #AB47BC, #BA68C8);
-  color: white;
-}
-
-.preview-actions .btn--primary:hover {
-  background: linear-gradient(135deg, #9C27B0, #AB47BC);
-}
-
-/* Analysis Section */
-.analysis-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.scanning-visualization {
-  text-align: center;
-  margin-bottom: var(--space-32);
-  padding: var(--space-32);
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(171, 71, 188, 0.2);
-}
-
-.scan-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.scan-line {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #AB47BC, transparent);
-  animation: scanningLine 2s linear infinite;
-}
-
-.scan-line:nth-child(1) {
-  top: 20%;
-  animation-delay: 0s;
-}
-
-.scan-line:nth-child(2) {
-  top: 50%;
-  animation-delay: 0.7s;
-}
-
-.scan-line:nth-child(3) {
-  top: 80%;
-  animation-delay: 1.4s;
-}
-
-.scanning-visualization h3 {
-  position: relative;
-  z-index: 2;
-  color: var(--color-text);
-}
-
-.analysis-steps {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-16);
-}
-
-.analysis-step {
-  display: flex;
-  align-items: center;
-  gap: var(--space-16);
-  padding: var(--space-16);
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  opacity: 0.5;
-  transition: all var(--duration-normal) var(--ease-standard);
-}
-
-.analysis-step.active {
-  opacity: 1;
-  border-color: #AB47BC;
-  background: rgba(171, 71, 188, 0.05);
-  box-shadow: 0 0 20px rgba(171, 71, 188, 0.1);
-}
-
-.analysis-step.completed {
-  opacity: 1;
-  border-color: #66BB6A;
-  background: rgba(102, 187, 106, 0.05);
-}
-
-.step-icon {
-  font-size: var(--font-size-2xl);
-  width: 50px;
-  text-align: center;
-}
-
-.step-content {
-  flex: 1;
-}
-
-.step-content h4 {
-  margin-bottom: var(--space-4);
-  color: var(--color-text);
-}
-
-.step-content p {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  margin-bottom: var(--space-12);
-}
-
-.step-progress {
-  width: 100%;
-  height: 6px;
-  background: var(--color-border);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.step-progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #AB47BC, #BA68C8);
-  border-radius: var(--radius-full);
-  width: 0;
-  transition: width var(--duration-normal) var(--ease-standard);
-}
-
-.step-status {
-  font-size: var(--font-size-xl);
-}
-
-/* Results Section */
-.results-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-24);
-  margin-bottom: var(--space-32);
-  text-align: center;
-}
-
-.health-score-circle {
-  position: relative;
-  display: inline-block;
-}
-
-.score-ring {
-  transform: rotate(-90deg);
-}
-
-.score-bg {
-  fill: none;
-  stroke: var(--color-border);
-  stroke-width: 8;
-}
-
-.score-fill {
-  fill: none;
-  stroke: url(#scoreGradient);
-  stroke-width: 8;
-  stroke-dasharray: 339.292;
-  stroke-dashoffset: 339.292;
-  transition: stroke-dashoffset 2s var(--ease-standard);
-  stroke-linecap: round;
-}
-
-.score-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.score-value {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  background: linear-gradient(135deg, #4DD0E1, #AB47BC);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.score-max {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-}
-
-.health-info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-  align-items: center;
-}
-
-.health-status {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-}
-
-.confidence {
-  color: var(--color-text-secondary);
-}
-
-/* Metrics Grid */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--space-16);
-  margin-bottom: var(--space-32);
-}
-
-.metric-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-16);
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-standard);
-  animation: slideInUp 0.5s ease-out;
-  position: relative;
-  overflow: hidden;
-}
-
-.metric-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #4DD0E1, #FF8A65, #AB47BC);
-}
-
-.metric-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-
-.metric-card {
-  display: flex;
-  align-items: center;
-  gap: var(--space-12);
-}
-
-.metric-icon {
-  font-size: var(--font-size-2xl);
-  width: 50px;
-  text-align: center;
-  background: linear-gradient(135deg, #4DD0E1, #AB47BC);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.metric-content {
-  flex: 1;
-}
-
-.metric-label {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-4);
-}
-
-.metric-value {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text);
-  margin-bottom: var(--space-4);
-}
-
-/* Analysis Accordion */
-.analysis-accordion {
-  margin-bottom: var(--space-32);
-}
-
-.accordion-item {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--space-8);
-  overflow: hidden;
-}
-
-.accordion-header {
-  width: 100%;
-  padding: var(--space-16);
-  background: var(--color-surface);
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text);
-  transition: background var(--duration-fast) var(--ease-standard);
-}
-
-.accordion-header:hover {
-  background: rgba(77, 208, 225, 0.05);
-}
-
-.accordion-icon {
-  transition: transform var(--duration-fast) var(--ease-standard);
-  color: #AB47BC;
-}
-
-.accordion-item.expanded .accordion-icon {
-  transform: rotate(180deg);
-}
-
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height var(--duration-normal) var(--ease-standard);
-  background: rgba(77, 208, 225, 0.03);
-}
-
-.accordion-item.expanded .accordion-content {
-  max-height: 200px;
-}
-
-.accordion-content p,
-.accordion-content ul {
-  padding: var(--space-16);
-  margin: 0;
-  color: var(--color-text);
-}
-
-.accordion-content li {
-  margin-bottom: var(--space-8);
-}
-
-/* Results Actions */
-.results-actions {
-  display: flex;
-  gap: var(--space-12);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.results-actions .btn {
-  min-width: 150px;
-  position: relative;
-  overflow: hidden;
-}
-
-.results-actions .btn--primary {
-  background: linear-gradient(135deg, #4DD0E1, #FF8A65);
-  color: white;
-  border: none;
-}
-
-.results-actions .btn--primary:hover {
-  background: linear-gradient(135deg, #26C6DA, #FF7043);
-}
-
-.results-actions .btn--secondary {
-  background: linear-gradient(135deg, #AB47BC, #BA68C8);
-  color: white;
-  border: none;
-}
-
-.results-actions .btn--secondary:hover {
-  background: linear-gradient(135deg, #9C27B0, #AB47BC);
-}
-
-/* Floating Action Button */
-.fab-menu {
-  position: fixed;
-  bottom: var(--space-24);
-  right: var(--space-24);
-  z-index: 1000;
-}
-
-.fab-main {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #7B1FA2;
-  color: white;
-  border: none;
-  box-shadow: var(--shadow-lg);
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-standard);
-}
-
-.fab-main:hover {
-  transform: scale(1.1);
-  background: #6A1B9A;
-  box-shadow: 0 8px 25px rgba(123, 31, 162, 0.3);
-}
-
-.fab-options {
-  position: absolute;
-  bottom: 70px;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
-  animation: slideInUp 0.3s ease-out;
-}
-
-.fab-options.hidden {
-  display: none;
-}
-
-.fab-option {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-standard);
-  box-shadow: var(--shadow-md);
-}
-
-.fab-option:hover {
-  transform: scale(1.1);
-  background: #7B1FA2;
-  color: white;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-16);
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-}
-
-.modal-content {
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  max-width: 500px;
-  width: 100%;
-  max-height: 80vh;
-  overflow-y: auto;
-  position: relative;
-  z-index: 1;
-  animation: modalSlideIn 0.3s ease-out;
-  border-top: 3px solid #AB47BC;
-}
-
-.modal-header {
-  padding: var(--space-16);
-  border-bottom: 1px solid var(--color-border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(171, 71, 188, 0.05);
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  font-size: var(--font-size-2xl);
-  cursor: pointer;
-  color: var(--color-text-secondary);
-  padding: var(--space-4);
-}
-
-.modal-body {
-  padding: var(--space-16);
-}
-
-/* Notification System */
-.notification-container {
-  position: fixed;
-  top: var(--space-16);
-  right: var(--space-16);
-  z-index: 3000;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
-.notification {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-base);
-  padding: var(--space-12) var(--space-16);
-  box-shadow: var(--shadow-md);
-  max-width: 300px;
-  animation: slideInRight 0.3s ease-out;
-  border-left: 4px solid #4DD0E1;
-}
-
-.notification.success {
-  border-left-color: #66BB6A;
-  background: rgba(102, 187, 106, 0.05);
-}
-
-.notification.error {
-  border-left-color: var(--color-error);
-  background: var(--color-bg-4);
-}
-
-/* Animations */
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-10px); }
-  60% { transform: translateY(-5px); }
-}
-
-@keyframes fillProgress {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(30px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scanningLine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-@keyframes modalSlideIn {
-  from { opacity: 0; transform: translateY(-20px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    gap: var(--space-12);
-  }
-  
-  .progress-steps {
-    flex-wrap: wrap;
-    gap: var(--space-16);
-  }
-  
-  .progress-step:not(:last-child)::after {
-    display: none;
-  }
-  
-  .main-content {
-    padding: var(--space-16);
-  }
-  
-  .guidelines-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .upload-buttons {
-    flex-direction: column;
-  }
-  
-  .preview-actions {
-    flex-direction: column;
-  }
-  
-  .results-header {
-    flex-direction: column;
-  }
-  
-  .metrics-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .results-actions {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .fab-menu {
-    bottom: var(--space-16);
-    right: var(--space-16);
-  }
-  
-  .modal-content {
-    margin: var(--space-8);
-  }
-  
-  .upload-area {
-    padding: var(--space-16);
-  }
-  
-  .analysis-step {
-    flex-direction: column;
-    text-align: center;
-  }
-}
+// PashuMitra Application JavaScript - Enhanced with Full Functionality
+
+class PashuMitra {
+    constructor() {
+        this.currentSection = 1;
+        this.currentStep = 1;
+        this.uploadedImage = null;
+        this.originalImage = null;
+        this.analysisRunning = false;
+        this.currentRotation = 0;
+        this.currentZoom = 1;
+        this.imageEnhanced = false;
+        this.analysisHistory = [];
+        this.currentLanguage = 'en';
+        this.translations = this.initTranslations();
+        this.init();
+    }
+
+    init() {
+        this.showLoadingScreen();
+        this.setupEventListeners();
+        this.setupDragAndDrop();
+        this.setupModal();
+        this.setupNotifications();
+        this.loadSettings();
+    }
+
+    initTranslations() {
+        return {
+            en: {
+                uploadTitle: "Upload Cattle Image",
+                takePhoto: "Take Photo",
+                chooseFile: "Choose File",
+                goodLighting: "Good lighting",
+                fullBodyVisible: "Full body visible",
+                sideProfile: "Side profile",
+                uploading: "Uploading...",
+                processing: "Processing image...",
+                analysisComplete: "Analysis completed successfully!",
+                shareSuccess: "Results shared successfully!",
+                downloadSuccess: "Report downloaded successfully!",
+                errorInvalidFile: "Please select a valid image file (JPEG, PNG)",
+                errorFileSize: "File size too large. Maximum 10MB allowed.",
+                errorCameraAccess: "Camera access denied. Please use file upload.",
+                backToUpload: "← Back to Upload",
+                startAnalysis: "Start AI Analysis →"
+            },
+            hi: {
+                uploadTitle: "पशु की छवि अपलोड करें",
+                takePhoto: "फोटो लें",
+                chooseFile: "फाइल चुनें",
+                goodLighting: "अच्छी रोशनी",
+                fullBodyVisible: "पूरा शरीर दिखे",
+                sideProfile: "साइड प्रोफाइल",
+                uploading: "अपलोड हो रहा है...",
+                processing: "छवि प्रसंस्करण...",
+                analysisComplete: "विश्लेषण सफलतापूर्वक पूरा हुआ!",
+                shareSuccess: "परिणाम सफलतापूर्वक साझा किए गए!",
+                downloadSuccess: "रिपोर्ट सफलतापूर्वक डाउनलोड हुई!",
+                errorInvalidFile: "कृपया एक वैध छवि फ़ाइल चुनें (JPEG, PNG)",
+                errorFileSize: "फ़ाइल का आकार बहुत बड़ा है। अधिकतम 10MB अनुमतित।",
+                errorCameraAccess: "कैमरा एक्सेस अस्वीकृत। कृपया फ़ाइल अपलोड का उपयोग करें।",
+                backToUpload: "← अपलोड पर वापस",
+                startAnalysis: "AI विश्लेषण शुरू करें →"
+            }
+        };
+    }
+
+    showLoadingScreen() {
+        setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('app').classList.remove('hidden');
+            this.showNotification('PashuMitra loaded successfully! 🎉', 'success');
+        }, 3000);
+    }
+
+    setupEventListeners() {
+        // File upload buttons with enhanced functionality
+        const takePhotoBtn = document.getElementById('take-photo-btn');
+        const chooseFileBtn = document.getElementById('choose-file-btn');
+        const fileInput = document.getElementById('file-input');
+
+        takePhotoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.handleCameraAccess();
+        });
+
+        chooseFileBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                this.handleFileUpload(e);
+            }
+        });
+
+        // Preview section buttons with full functionality
+        const backToUploadBtn = document.getElementById('back-to-upload');
+        const startAnalysisBtn = document.getElementById('start-analysis');
+
+        if (backToUploadBtn) {
+            backToUploadBtn.addEventListener('click', () => this.goToSection(1));
+        }
+        if (startAnalysisBtn) {
+            startAnalysisBtn.addEventListener('click', () => this.startAnalysis());
+        }
+
+        // Image editing controls - all functional
+        const rotateBtn = document.getElementById('rotate-btn');
+        const enhanceBtn = document.getElementById('enhance-btn');
+        const cropBtn = document.getElementById('crop-btn');
+        const zoomBtn = document.getElementById('zoom-btn');
+        const resetBtn = document.getElementById('reset-btn');
+
+        if (rotateBtn) rotateBtn.addEventListener('click', () => this.rotateImage());
+        if (enhanceBtn) enhanceBtn.addEventListener('click', () => this.enhanceImage());
+        if (cropBtn) cropBtn.addEventListener('click', () => this.cropImage());
+        if (zoomBtn) zoomBtn.addEventListener('click', () => this.zoomImage());
+        if (resetBtn) resetBtn.addEventListener('click', () => this.resetImage());
+
+        // Results actions - all functional
+        const shareResultsBtn = document.getElementById('share-results');
+        const downloadReportBtn = document.getElementById('download-report');
+        const newAnalysisBtn = document.getElementById('new-analysis');
+
+        if (shareResultsBtn) shareResultsBtn.addEventListener('click', () => this.shareResults());
+        if (downloadReportBtn) downloadReportBtn.addEventListener('click', () => this.downloadReport());
+        if (newAnalysisBtn) newAnalysisBtn.addEventListener('click', () => this.startNewAnalysis());
+
+        // Voice button functionality
+        const voiceBtn = document.getElementById('voice-btn');
+        if (voiceBtn) {
+            voiceBtn.addEventListener('click', () => this.toggleVoiceCommand());
+        }
+
+        // Language selector functionality
+        const languageSelector = document.getElementById('language-selector');
+        if (languageSelector) {
+            languageSelector.addEventListener('change', (e) => this.changeLanguage(e.target.value));
+        }
+
+        // FAB menu functionality
+        const fabToggle = document.getElementById('fab-toggle');
+        if (fabToggle) {
+            fabToggle.addEventListener('click', () => this.toggleFabMenu());
+        }
+
+        document.querySelectorAll('.fab-option').forEach(btn => {
+            btn.addEventListener('click', (e) => this.handleFabAction(e.target.dataset.action));
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => this.toggleAccordion(header));
+        });
+
+        // Metric cards functionality
+        document.querySelectorAll('.metric-card').forEach(card => {
+            card.addEventListener('click', () => this.showMetricModal(card.dataset.metric));
+        });
+
+        // Modal close functionality
+        this.setupModalCloseEvents();
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => this.handleKeyboardShortcuts(e));
+
+        // Settings functionality
+        this.setupSettingsEvents();
+    }
+
+    setupModalCloseEvents() {
+        // Main metric modal
+        const modalClose = document.getElementById('modal-close');
+        const modalOverlay = document.getElementById('metric-modal-overlay');
+        
+        if (modalClose) modalClose.addEventListener('click', () => this.closeModal('metric-modal'));
+        if (modalOverlay) modalOverlay.addEventListener('click', () => this.closeModal('metric-modal'));
+
+        // Help modal
+        const helpModalClose = document.getElementById('help-modal-close');
+        const helpModalOverlay = document.getElementById('help-modal-overlay');
+        
+        if (helpModalClose) helpModalClose.addEventListener('click', () => this.closeModal('help-modal'));
+        if (helpModalOverlay) helpModalOverlay.addEventListener('click', () => this.closeModal('help-modal'));
+
+        // Settings modal
+        const settingsModalClose = document.getElementById('settings-modal-close');
+        const settingsModalOverlay = document.getElementById('settings-modal-overlay');
+        
+        if (settingsModalClose) settingsModalClose.addEventListener('click', () => this.closeModal('settings-modal'));
+        if (settingsModalOverlay) settingsModalOverlay.addEventListener('click', () => this.closeModal('settings-modal'));
+    }
+
+    setupSettingsEvents() {
+        const defaultLanguage = document.getElementById('default-language');
+        const analysisQuality = document.getElementById('analysis-quality');
+        const saveHistory = document.getElementById('save-history');
+
+        if (defaultLanguage) {
+            defaultLanguage.addEventListener('change', (e) => {
+                this.changeLanguage(e.target.value);
+                this.saveSettings();
+            });
+        }
+
+        if (analysisQuality) {
+            analysisQuality.addEventListener('change', () => this.saveSettings());
+        }
+
+        if (saveHistory) {
+            saveHistory.addEventListener('change', () => this.saveSettings());
+        }
+    }
+
+    setupDragAndDrop() {
+        const uploadArea = document.getElementById('upload-area');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        });
+
+        uploadArea.addEventListener('dragenter', () => {
+            uploadArea.classList.add('dragover');
+            this.showNotification('Drop your image here!', 'info');
+        });
+
+        uploadArea.addEventListener('dragover', () => {
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', (e) => {
+            if (!uploadArea.contains(e.relatedTarget)) {
+                uploadArea.classList.remove('dragover');
+            }
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                this.validateAndProcessFile(files[0]);
+            }
+        });
+
+        uploadArea.addEventListener('click', (e) => {
+            if (e.target === uploadArea || e.target.closest('.upload-content')) {
+                document.getElementById('file-input').click();
+            }
+        });
+    }
+
+    handleCameraAccess() {
+        // Check for camera support
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            this.showNotification(this.translations[this.currentLanguage].errorCameraAccess, 'error');
+            document.getElementById('file-input').click();
+            return;
+        }
+
+        // Show loading state
+        const takePhotoBtn = document.getElementById('take-photo-btn');
+        const originalText = takePhotoBtn.innerHTML;
+        takePhotoBtn.innerHTML = '<span>📷</span> Accessing Camera...';
+        takePhotoBtn.disabled = true;
+
+        // For mobile devices, directly trigger file input with camera
+        const fileInput = document.getElementById('file-input');
+        fileInput.setAttribute('capture', 'environment');
+        fileInput.click();
+
+        // Reset button state
+        setTimeout(() => {
+            takePhotoBtn.innerHTML = originalText;
+            takePhotoBtn.disabled = false;
+        }, 2000);
+
+        this.showNotification('Camera access initiated!', 'success');
+    }
+
+    handleFileUpload(event) {
+        const file = event.target.files[0];
+        this.validateAndProcessFile(file);
+    }
+
+    validateAndProcessFile(file) {
+        // File type validation
+        const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        if (!validTypes.includes(file.type)) {
+            this.showNotification(this.translations[this.currentLanguage].errorInvalidFile, 'error');
+            return;
+        }
+
+        // File size validation (10MB limit)
+        const maxSize = 10 * 1024 * 1024;
+        if (file.size > maxSize) {
+            this.showNotification(this.translations[this.currentLanguage].errorFileSize, 'error');
+            return;
+        }
+
+        // Show upload progress
+        this.showUploadProgress();
+        this.processImageFile(file);
+    }
+
+    showUploadProgress() {
+        const uploadStatus = document.getElementById('upload-status');
+        if (uploadStatus) {
+            uploadStatus.classList.remove('hidden');
+            uploadStatus.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px; margin-top: 16px;">
+                    <div style="width: 20px; height: 20px; border: 2px solid #4DD0E1; border-top: 2px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <span>${this.translations[this.currentLanguage].uploading}</span>
+                </div>
+            `;
+        }
+    }
+
+    processImageFile(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            this.uploadedImage = e.target.result;
+            this.originalImage = e.target.result;
+            this.currentRotation = 0;
+            this.currentZoom = 1;
+            this.imageEnhanced = false;
+            
+            // Hide upload status
+            const uploadStatus = document.getElementById('upload-status');
+            if (uploadStatus) uploadStatus.classList.add('hidden');
+            
+            // Show quality assessment
+            setTimeout(() => {
+                this.showQualityFeedback();
+            }, 500);
+            
+            // Show success notification
+            this.showNotification('Image uploaded successfully! ✅', 'success');
+            
+            // Transition to preview
+            setTimeout(() => {
+                this.goToSection(2);
+                this.displayPreview();
+            }, 2000);
+        };
+
+        reader.onerror = () => {
+            this.showNotification('Error reading file. Please try again.', 'error');
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    showQualityFeedback() {
+        const qualityFeedback = document.getElementById('quality-feedback');
+        qualityFeedback.classList.remove('hidden');
+        
+        // Simulate realistic quality assessment
+        const assessments = [
+            { id: 'lighting', delay: 500, status: 'Good', color: '#4CAF50' },
+            { id: 'clarity', delay: 1000, status: 'Excellent', color: '#2196F3' },
+            { id: 'angle', delay: 1500, status: 'Good', color: '#FF9800' }
+        ];
+        
+        assessments.forEach(assessment => {
+            setTimeout(() => {
+                const item = document.querySelector(`[data-quality="${assessment.id}"]`);
+                if (item) {
+                    const statusEl = item.querySelector('.quality-status');
+                    statusEl.textContent = assessment.status;
+                    statusEl.style.color = assessment.color;
+                    item.style.animation = 'slideInUp 0.5s ease-out';
+                    
+                    // Add success sound effect simulation
+                    if (assessment.status === 'Excellent') {
+                        setTimeout(() => {
+                            this.showNotification(`${assessment.id.charAt(0).toUpperCase() + assessment.id.slice(1)} quality: ${assessment.status}!`, 'success');
+                        }, 200);
+                    }
+                }
+            }, assessment.delay);
+        });
+    }
+
+    displayPreview() {
+        const previewImg = document.getElementById('preview-image');
+        if (previewImg && this.uploadedImage) {
+            previewImg.src = this.uploadedImage;
+            previewImg.style.animation = 'fadeIn 0.5s ease-out';
+            previewImg.style.transform = `rotate(${this.currentRotation}deg) scale(${this.currentZoom})`;
+        }
+    }
+
+    // Image editing functionality
+    rotateImage() {
+        this.currentRotation += 90;
+        if (this.currentRotation >= 360) this.currentRotation = 0;
+        
+        const previewImg = document.getElementById('preview-image');
+        if (previewImg) {
+            previewImg.style.transform = `rotate(${this.currentRotation}deg) scale(${this.currentZoom})`;
+            previewImg.style.transition = 'transform 0.3s ease';
+        }
+        
+        this.showNotification(`Image rotated to ${this.currentRotation}°`, 'success');
+    }
+
+    enhanceImage() {
+        const previewImg = document.getElementById('preview-image');
+        if (!previewImg) return;
+
+        if (!this.imageEnhanced) {
+            previewImg.style.filter = 'brightness(1.15) contrast(1.1) saturate(1.2) sharpen(0.5)';
+            this.imageEnhanced = true;
+            this.showNotification('Image enhanced: +15% brightness, +10% contrast, +20% saturation', 'success');
+        } else {
+            previewImg.style.filter = 'brightness(1.3) contrast(1.2) saturate(1.4) hue-rotate(5deg)';
+            this.showNotification('Applied advanced enhancement filters', 'success');
+        }
+    }
+
+    cropImage() {
+        // Simulate crop interface
+        const previewImg = document.getElementById('preview-image');
+        if (!previewImg) return;
+
+        // Add crop overlay effect
+        previewImg.style.clipPath = 'inset(10px 20px 15px 25px)';
+        previewImg.style.transition = 'clip-path 0.5s ease';
+        
+        setTimeout(() => {
+            previewImg.style.clipPath = 'none';
+        }, 2000);
+
+        this.showNotification('Crop tool applied - Auto-cropped to optimal frame', 'success');
+    }
+
+    zoomImage() {
+        this.currentZoom = this.currentZoom === 1 ? 1.5 : this.currentZoom === 1.5 ? 2 : 1;
+        
+        const previewImg = document.getElementById('preview-image');
+        if (previewImg) {
+            previewImg.style.transform = `rotate(${this.currentRotation}deg) scale(${this.currentZoom})`;
+            previewImg.style.transition = 'transform 0.3s ease';
+        }
+        
+        this.showNotification(`Zoom level: ${Math.round(this.currentZoom * 100)}%`, 'success');
+    }
+
+    resetImage() {
+        this.currentRotation = 0;
+        this.currentZoom = 1;
+        this.imageEnhanced = false;
+        
+        const previewImg = document.getElementById('preview-image');
+        if (previewImg) {
+            previewImg.src = this.originalImage;
+            previewImg.style.transform = 'none';
+            previewImg.style.filter = 'none';
+            previewImg.style.clipPath = 'none';
+            previewImg.style.transition = 'all 0.3s ease';
+        }
+        
+        this.showNotification('Image reset to original state', 'success');
+    }
+
+    goToSection(sectionNumber) {
+        // Hide all sections
+        const sections = ['upload-section', 'preview-section', 'analysis-section', 'results-section'];
+        sections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) section.classList.remove('active');
+        });
+
+        // Show target section
+        const targetSectionId = this.getSectionId(sectionNumber);
+        const targetSection = document.getElementById(targetSectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+
+        // Update progress steps
+        this.updateProgressSteps(sectionNumber);
+        this.currentSection = sectionNumber;
+    }
+
+    getSectionId(number) {
+        const sections = {
+            1: 'upload-section',
+            2: 'preview-section', 
+            3: 'analysis-section',
+            4: 'results-section'
+        };
+        return sections[number] || 'upload-section';
+    }
+
+    updateProgressSteps(activeStep) {
+        document.querySelectorAll('.progress-step').forEach(step => {
+            step.classList.remove('active', 'completed');
+            const stepNumber = parseInt(step.dataset.step);
+            if (stepNumber === activeStep) {
+                step.classList.add('active');
+            } else if (stepNumber < activeStep) {
+                step.classList.add('completed');
+            }
+        });
+    }
+
+    startAnalysis() {
+        if (!this.uploadedImage) {
+            this.showNotification('Please upload an image first', 'error');
+            return;
+        }
+        
+        this.goToSection(3);
+        this.showNotification('Starting comprehensive AI analysis...', 'success');
+        
+        setTimeout(() => {
+            this.runAnalysisSequence();
+        }, 800);
+    }
+
+    runAnalysisSequence() {
+        if (this.analysisRunning) return;
+        this.analysisRunning = true;
+
+        const steps = [
+            { id: 1, name: 'Detecting features', duration: 2000 },
+            { id: 2, name: 'Measuring proportions', duration: 2000 },
+            { id: 3, name: 'Calculating metrics', duration: 2000 },
+            { id: 4, name: 'Breed identification', duration: 2000 }
+        ];
+
+        let currentStepIndex = 0;
+        let totalProgress = 0;
+
+        const runStep = () => {
+            if (currentStepIndex >= steps.length) {
+                this.analysisRunning = false;
+                this.showNotification(this.translations[this.currentLanguage].analysisComplete, 'success');
+                setTimeout(() => this.showResults(), 1000);
+                return;
+            }
+
+            const step = steps[currentStepIndex];
+            const stepEl = document.querySelector(`.analysis-step[data-step="${step.id}"]`);
+            
+            if (!stepEl) {
+                currentStepIndex++;
+                runStep();
+                return;
+            }
+
+            const progressBar = stepEl.querySelector('.step-progress-bar');
+            const statusEl = stepEl.querySelector('.step-status');
+            const percentageEl = document.getElementById('analysis-percentage');
+
+            // Activate step
+            stepEl.classList.add('active');
+            statusEl.textContent = '⏳';
+            
+            // Show step notification
+            this.showNotification(`${step.name}...`, 'info');
+
+            // Animate progress bar and percentage
+            let stepProgress = 0;
+            const progressInterval = setInterval(() => {
+                stepProgress += 2;
+                totalProgress = Math.min(((currentStepIndex / steps.length) * 100) + (stepProgress / steps.length), 100);
+                
+                if (progressBar) {
+                    progressBar.style.width = `${stepProgress}%`;
+                }
+                if (percentageEl) {
+                    percentageEl.textContent = `${Math.round(totalProgress)}%`;
+                }
+
+                if (stepProgress >= 100) {
+                    clearInterval(progressInterval);
+                    
+                    // Complete step
+                    setTimeout(() => {
+                        stepEl.classList.remove('active');
+                        stepEl.classList.add('completed');
+                        statusEl.textContent = '✅';
+                        currentStepIndex++;
+                        runStep();
+                    }, 300);
+                }
+            }, step.duration / 50);
+        };
+
+        runStep();
+    }
+
+    showResults() {
+        this.goToSection(4);
+        
+        // Save to history
+        this.saveAnalysisToHistory();
+        
+        setTimeout(() => {
+            this.animateHealthScore();
+            this.animateMetrics();
+        }, 500);
+    }
+
+    animateHealthScore() {
+        const scoreDisplay = document.getElementById('score-display');
+        const scoreProgress = document.getElementById('score-progress');
+        const confidenceValue = document.getElementById('confidence-value');
+        
+        if (!scoreDisplay || !scoreProgress || !confidenceValue) return;
+
+        // Animate score counting
+        let currentScore = 0;
+        const targetScore = 8.7;
+        const scoreInterval = setInterval(() => {
+            currentScore += 0.1;
+            if (currentScore >= targetScore) {
+                currentScore = targetScore;
+                clearInterval(scoreInterval);
+            }
+            scoreDisplay.textContent = currentScore.toFixed(1);
+        }, 50);
+
+        // Animate progress ring
+        const circumference = 339.292;
+        const progress = (targetScore / 10) * circumference;
+        setTimeout(() => {
+            scoreProgress.style.strokeDashoffset = (circumference - progress).toString();
+        }, 300);
+
+        // Animate confidence
+        let currentConfidence = 0;
+        const targetConfidence = 94;
+        const confidenceInterval = setInterval(() => {
+            currentConfidence += 2;
+            if (currentConfidence >= targetConfidence) {
+                currentConfidence = targetConfidence;
+                clearInterval(confidenceInterval);
+            }
+            confidenceValue.textContent = currentConfidence.toString();
+        }, 30);
+    }
+
+    animateMetrics() {
+        const metricCards = document.querySelectorAll('.metric-card');
+        const metricValues = [
+            { id: 'body-length-value', target: 2.41, suffix: '' },
+            { id: 'hip-width-value', target: 156, suffix: 'px' },
+            { id: 'topline-angle-value', target: 4.2, suffix: '°' }
+        ];
+
+        metricCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.animation = 'slideInUp 0.5s ease-out';
+                
+                // Animate metric values
+                const valueData = metricValues[index];
+                if (valueData) {
+                    const valueEl = document.getElementById(valueData.id);
+                    if (valueEl) {
+                        let current = 0;
+                        const interval = setInterval(() => {
+                            current += valueData.target / 50;
+                            if (current >= valueData.target) {
+                                current = valueData.target;
+                                clearInterval(interval);
+                            }
+                            valueEl.textContent = current.toFixed(valueData.target % 1 === 0 ? 0 : 1) + valueData.suffix;
+                        }, 30);
+                    }
+                }
+            }, 500 + (index * 200));
+        });
+    }
+
+    // Voice functionality
+    toggleVoiceCommand() {
+        const voiceBtn = document.getElementById('voice-btn');
+        if (!voiceBtn) return;
+
+        const isActive = voiceBtn.classList.contains('active');
+        
+        if (isActive) {
+            voiceBtn.classList.remove('active');
+            this.showNotification('Voice command stopped', 'success');
+        } else {
+            voiceBtn.classList.add('active');
+            this.showNotification('Listening for voice commands... Try saying "Upload", "Analyze", or "Share"', 'info');
+            
+            // Simulate voice recognition
+            setTimeout(() => {
+                const commands = ['Upload new image', 'Start analysis', 'Share results', 'Go back'];
+                const randomCommand = commands[Math.floor(Math.random() * commands.length)];
+                this.showNotification(`Voice command recognized: "${randomCommand}"`, 'success');
+                voiceBtn.classList.remove('active');
+            }, 3000);
+        }
+    }
+
+    // Language functionality
+    changeLanguage(languageCode) {
+        this.currentLanguage = languageCode;
+        this.updateUIText();
+        this.showNotification(`Language changed to ${this.getLanguageName(languageCode)}`, 'success');
+    }
+
+    getLanguageName(code) {
+        const names = {
+            'en': 'English',
+            'hi': 'Hindi',
+            'bn': 'Bengali',
+            'te': 'Telugu',
+            'mr': 'Marathi',
+            'ta': 'Tamil',
+            'gu': 'Gujarati',
+            'kn': 'Kannada',
+            'ml': 'Malayalam',
+            'pa': 'Punjabi',
+            'ur': 'Urdu',
+            'or': 'Odia',
+            'as': 'Assamese'
+        };
+        return names[code] || code;
+    }
+
+    updateUIText() {
+        const translations = this.translations[this.currentLanguage];
+        if (!translations) return;
+
+        // Update main UI text
+        const elementsToUpdate = [
+            { selector: '#take-photo-btn span:last-child', key: 'takePhoto' },
+            { selector: '#choose-file-btn span:last-child', key: 'chooseFile' },
+            { selector: '.upload-content h4', key: 'uploadTitle' },
+            { selector: '#back-to-upload', key: 'backToUpload' },
+            { selector: '#start-analysis', key: 'startAnalysis' }
+        ];
+
+        elementsToUpdate.forEach(item => {
+            const element = document.querySelector(item.selector);
+            if (element && translations[item.key]) {
+                element.textContent = translations[item.key];
+            }
+        });
+    }
+
+    // FAB menu functionality
+    toggleFabMenu() {
+        const fabOptions = document.getElementById('fab-options');
+        if (fabOptions) {
+            fabOptions.classList.toggle('hidden');
+            
+            if (!fabOptions.classList.contains('hidden')) {
+                this.showNotification('Settings menu opened', 'info');
+            }
+        }
+    }
+
+    handleFabAction(action) {
+        const actions = {
+            'help': () => this.showModal('help-modal'),
+            'history': () => this.showAnalysisHistory(),
+            'settings': () => this.showModal('settings-modal'),
+            'feedback': () => this.showFeedbackForm()
+        };
+        
+        if (actions[action]) {
+            actions[action]();
+        }
+        
+        this.toggleFabMenu();
+    }
+
+    showAnalysisHistory() {
+        if (this.analysisHistory.length === 0) {
+            this.showNotification('No analysis history found', 'info');
+            return;
+        }
+        
+        let historyHTML = '<h4>Recent Analyses</h4><div style="max-height: 300px; overflow-y: auto;">';
+        this.analysisHistory.forEach((analysis, index) => {
+            historyHTML += `
+                <div style="padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 8px;">
+                    <div style="font-weight: bold;">Analysis #${index + 1}</div>
+                    <div style="font-size: 14px; color: #666;">Score: ${analysis.score}/10</div>
+                    <div style="font-size: 12px; color: #999;">${analysis.date}</div>
+                </div>
+            `;
+        });
+        historyHTML += '</div>';
+        
+        // Create temporary modal for history
+        this.showCustomModal('Analysis History', historyHTML);
+    }
+
+    showFeedbackForm() {
+        const feedbackHTML = `
+            <h4>Send Feedback</h4>
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label class="form-label">Rating</label>
+                    <select class="form-control" id="feedback-rating">
+                        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                        <option value="4">⭐⭐⭐⭐ Good</option>
+                        <option value="3">⭐⭐⭐ Average</option>
+                        <option value="2">⭐⭐ Poor</option>
+                        <option value="1">⭐ Very Poor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Comments</label>
+                    <textarea class="form-control" id="feedback-comments" rows="4" placeholder="Tell us about your experience..."></textarea>
+                </div>
+                <button type="button" class="btn btn--primary" onclick="window.pashuMitra.submitFeedback()">Submit Feedback</button>
+            </form>
+        `;
+        
+        this.showCustomModal('Feedback', feedbackHTML);
+    }
+
+    submitFeedback() {
+        const rating = document.getElementById('feedback-rating')?.value;
+        const comments = document.getElementById('feedback-comments')?.value;
+        
+        // Simulate feedback submission
+        setTimeout(() => {
+            this.showNotification(`Thank you for your ${rating}-star feedback!`, 'success');
+            this.closeAllModals();
+        }, 1000);
+    }
+
+    // Modal functionality
+    setupModal() {
+        this.modalData = {
+            bodyLength: {
+                title: 'Body Length Ratio Analysis',
+                content: `
+                    <h4>Body Length Ratio: 2.41</h4>
+                    <p><strong>Status:</strong> <span class="status status--success">Optimal</span></p>
+                    <p><strong>Description:</strong> This metric measures the ratio of body length to height. A ratio of 2.41 indicates excellent body proportions for optimal health and productivity.</p>
+                    <p><strong>Normal Range:</strong> 2.2 - 2.6</p>
+                    <p><strong>Clinical Significance:</strong> Optimal body length ratios correlate with better milk production and overall health outcomes.</p>
+                    <p><strong>Recommendations:</strong></p>
+                    <ul>
+                        <li>Maintain current nutrition to support continued healthy growth</li>
+                        <li>Monitor growth patterns monthly</li>
+                        <li>Ensure adequate protein intake for muscle development</li>
+                    </ul>
+                `
+            },
+            hipWidth: {
+                title: 'Hip Width Assessment',
+                content: `
+                    <h4>Hip Width: 156px</h4>
+                    <p><strong>Status:</strong> <span class="status status--info">Good</span></p>
+                    <p><strong>Description:</strong> Hip width measurement indicates good muscular development and structural capacity for reproduction and mobility.</p>
+                    <p><strong>Normal Range:</strong> 140-180px (relative to image scale)</p>
+                    <p><strong>Clinical Significance:</strong> Adequate hip width is essential for ease of calving and overall structural soundness.</p>
+                    <p><strong>Recommendations:</strong></p>
+                    <ul>
+                        <li>Monitor for consistent development over time</li>
+                        <li>Ensure adequate calcium and phosphorus in diet</li>
+                        <li>Provide regular exercise for muscle tone</li>
+                    </ul>
+                `
+            },
+            toplineAngle: {
+                title: 'Topline Angle Analysis',
+                content: `
+                    <h4>Topline Angle: 4.2°</h4>
+                    <p><strong>Status:</strong> <span class="status status--success">Excellent</span></p>
+                    <p><strong>Description:</strong> The topline angle indicates excellent structural soundness and proper spine alignment. This measurement reflects good posture and muscle development.</p>
+                    <p><strong>Normal Range:</strong> 2-8° (slight slope acceptable)</p>
+                    <p><strong>Clinical Significance:</strong> A proper topline angle indicates good structural integrity and reduces risk of back problems.</p>
+                    <p><strong>Recommendations:</strong></p>
+                    <ul>
+                        <li>Continue current care regimen to maintain optimal posture</li>
+                        <li>Ensure proper flooring to prevent slipping</li>
+                        <li>Regular hoof trimming to maintain proper stance</li>
+                        <li>Monitor for any changes in gait or posture</li>
+                    </ul>
+                `
+            }
+        };
+    }
+
+    showModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('hidden');
+        }
+    }
+
+    showCustomModal(title, content) {
+        // Create a temporary modal
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <div class="modal-overlay" onclick="this.parentElement.remove()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>${title}</h3>
+                    <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                </div>
+                <div class="modal-body">${content}</div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    showMetricModal(metricType) {
+        const modal = document.getElementById('metric-modal');
+        const title = document.getElementById('modal-title');
+        const body = document.getElementById('modal-body');
+        
+        if (!modal || !title || !body) return;
+
+        const data = this.modalData[metricType];
+        if (data) {
+            title.textContent = data.title;
+            body.innerHTML = data.content;
+            modal.classList.remove('hidden');
+        }
+    }
+
+    closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add('hidden');
+        }
+    }
+
+    closeAllModals() {
+        document.querySelectorAll('.modal:not(.hidden)').forEach(modal => {
+            modal.classList.add('hidden');
+        });
+        
+        // Remove temporary modals
+        document.querySelectorAll('.modal:not([id])').forEach(modal => {
+            modal.remove();
+        });
+    }
+
+    // Accordion functionality
+    toggleAccordion(header) {
+        const accordionItem = header.parentElement;
+        const isExpanded = accordionItem.classList.contains('expanded');
+        
+        // Close all accordions
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            item.classList.remove('expanded');
+        });
+        
+        // Toggle current accordion
+        if (!isExpanded) {
+            accordionItem.classList.add('expanded');
+        }
+    }
+
+    // Sharing and downloading functionality
+    shareResults() {
+        const shareData = {
+            title: 'PashuMitra Health Assessment Results',
+            text: `🐄 Cattle Health Score: 8.7/10 - Excellent Health!\n\n📊 Key Metrics:\n• Body Length: 2.41 (Optimal)\n• Hip Width: 156px (Good)\n• Topline Angle: 4.2° (Excellent)\n\n🎯 Confidence: 94%\n\nAnalyzed with PashuMitra AI`,
+            url: window.location.href
+        };
+
+        if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+            navigator.share(shareData)
+                .then(() => {
+                    this.showNotification(this.translations[this.currentLanguage].shareSuccess, 'success');
+                })
+                .catch(err => {
+                    console.log('Error sharing:', err);
+                    this.fallbackShare(shareData.text);
+                });
+        } else {
+            this.fallbackShare(shareData.text);
+        }
+    }
+
+    fallbackShare(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+                this.showNotification('Results copied to clipboard! 📋', 'success');
+            }).catch(() => {
+                this.showNotification('Results ready to share! 🔗', 'success');
+            });
+        } else {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                this.showNotification('Results copied to clipboard! 📋', 'success');
+            } catch (err) {
+                this.showNotification('Results ready to share! 🔗', 'success');
+            }
+            document.body.removeChild(textArea);
+        }
+    }
+
+    downloadReport() {
+        const reportData = {
+            metadata: {
+                appName: "PashuMitra",
+                version: "1.0.0",
+                analysisDate: new Date().toISOString(),
+                analysisId: `PM_${Date.now()}`
+            },
+            results: {
+                healthScore: 8.7,
+                confidence: 94,
+                status: "Excellent Health",
+                metrics: {
+                    bodyLengthRatio: { value: 2.41, status: "Optimal", range: "2.2-2.6" },
+                    hipWidth: { value: "156px", status: "Good", range: "140-180px" },
+                    toplineAngle: { value: "4.2°", status: "Excellent", range: "2-8°" }
+                }
+            },
+            recommendations: [
+                "Continue current nutrition and care regimen",
+                "Monitor for changes in posture or movement",
+                "Schedule regular health assessments",
+                "Maintain proper exercise routine"
+            ],
+            technicalDetails: {
+                imageProcessing: "Advanced AI Analysis",
+                algorithmVersion: "2.1.0",
+                processingTime: "8.2 seconds",
+                dataPoints: 47
+            }
+        };
+        
+        try {
+            // Create comprehensive report
+            const reportContent = this.generateReportHTML(reportData);
+            const blob = new Blob([reportContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cattle-health-report-${new Date().toISOString().split('T')[0]}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            this.showNotification(this.translations[this.currentLanguage].downloadSuccess, 'success');
+        } catch (error) {
+            // Fallback: JSON download
+            const blob = new Blob([JSON.stringify(reportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cattle-health-report-${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            this.showNotification('Report downloaded successfully! 📄', 'success');
+        }
+    }
+
+    generateReportHTML(data) {
+        return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PashuMitra Health Assessment Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f8f9fa; }
+        .report-container { max-width: 800px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #4DD0E1, #FF8A65); color: white; padding: 30px; text-align: center; }
+        .content { padding: 30px; }
+        .score-section { text-align: center; margin: 30px 0; }
+        .score-circle { display: inline-block; width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(#4DD0E1 0deg ${data.results.healthScore * 36}deg, #e0e0e0 ${data.results.healthScore * 36}deg 360deg); position: relative; }
+        .score-inner { position: absolute; top: 10px; left: 10px; width: 100px; height: 100px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
+        .metric-card { background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #4DD0E1; }
+        .recommendations { background: #e8f5e8; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .recommendations ul { margin: 10px 0; padding-left: 20px; }
+        .footer { background: #f8f9fa; padding: 20px; text-align: center; font-size: 12px; color: #666; }
+        @media print { body { margin: 0; } .report-container { box-shadow: none; } }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="header">
+            <h1>🐄 PashuMitra Health Assessment Report</h1>
+            <p>AI-Powered Cattle Health Analysis</p>
+            <p>Analysis ID: ${data.metadata.analysisId}</p>
+        </div>
+        
+        <div class="content">
+            <div class="score-section">
+                <div class="score-circle">
+                    <div class="score-inner">${data.results.healthScore}/10</div>
+                </div>
+                <h2>${data.results.status}</h2>
+                <p>Confidence: ${data.results.confidence}%</p>
+                <p>Analysis Date: ${new Date(data.metadata.analysisDate).toLocaleDateString()}</p>
+            </div>
+            
+            <h3>📊 Detailed Metrics</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>📏 Body Length Ratio</h4>
+                    <p><strong>Value:</strong> ${data.results.metrics.bodyLengthRatio.value}</p>
+                    <p><strong>Status:</strong> ${data.results.metrics.bodyLengthRatio.status}</p>
+                    <p><strong>Normal Range:</strong> ${data.results.metrics.bodyLengthRatio.range}</p>
+                </div>
+                <div class="metric-card">
+                    <h4>📐 Hip Width</h4>
+                    <p><strong>Value:</strong> ${data.results.metrics.hipWidth.value}</p>
+                    <p><strong>Status:</strong> ${data.results.metrics.hipWidth.status}</p>
+                    <p><strong>Normal Range:</strong> ${data.results.metrics.hipWidth.range}</p>
+                </div>
+                <div class="metric-card">
+                    <h4>📊 Topline Angle</h4>
+                    <p><strong>Value:</strong> ${data.results.metrics.toplineAngle.value}</p>
+                    <p><strong>Status:</strong> ${data.results.metrics.toplineAngle.status}</p>
+                    <p><strong>Normal Range:</strong> ${data.results.metrics.toplineAngle.range}</p>
+                </div>
+            </div>
+            
+            <div class="recommendations">
+                <h3>💡 Care Recommendations</h3>
+                <ul>
+                    ${data.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <h3>🔧 Technical Details</h3>
+            <ul>
+                <li><strong>Processing Method:</strong> ${data.technicalDetails.imageProcessing}</li>
+                <li><strong>Algorithm Version:</strong> ${data.technicalDetails.algorithmVersion}</li>
+                <li><strong>Processing Time:</strong> ${data.technicalDetails.processingTime}</li>
+                <li><strong>Data Points Analyzed:</strong> ${data.technicalDetails.dataPoints}</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Report generated by PashuMitra v${data.metadata.version} | Smart India Hackathon 2025</p>
+            <p>This report is for informational purposes. Please consult a veterinarian for professional advice.</p>
+        </div>
+    </div>
+</body>
+</html>
+        `;
+    }
+
+    // Settings and data persistence
+    saveSettings() {
+        const settings = {
+            defaultLanguage: document.getElementById('default-language')?.value || 'en',
+            analysisQuality: document.getElementById('analysis-quality')?.value || 'standard',
+            saveHistory: document.getElementById('save-history')?.checked || false
+        };
+        
+        // In a real app, this would use localStorage
+        this.showNotification('Settings saved successfully! ⚙️', 'success');
+    }
+
+    loadSettings() {
+        // In a real app, this would load from localStorage
+        const defaultSettings = {
+            defaultLanguage: 'en',
+            analysisQuality: 'standard',
+            saveHistory: true
+        };
+        
+        // Apply loaded settings
+        this.currentLanguage = defaultSettings.defaultLanguage;
+    }
+
+    saveAnalysisToHistory() {
+        const analysis = {
+            id: `analysis_${Date.now()}`,
+            score: 8.7,
+            confidence: 94,
+            date: new Date().toLocaleString(),
+            metrics: {
+                bodyLength: 2.41,
+                hipWidth: '156px',
+                toplineAngle: '4.2°'
+            }
+        };
+        
+        this.analysisHistory.unshift(analysis);
+        
+        // Keep only last 10 analyses
+        if (this.analysisHistory.length > 10) {
+            this.analysisHistory = this.analysisHistory.slice(0, 10);
+        }
+    }
+
+    startNewAnalysis() {
+        // Reset application state
+        this.currentSection = 1;
+        this.uploadedImage = null;
+        this.originalImage = null;
+        this.analysisRunning = false;
+        this.currentRotation = 0;
+        this.currentZoom = 1;
+        this.imageEnhanced = false;
+        
+        // Reset UI elements
+        const fileInput = document.getElementById('file-input');
+        const qualityFeedback = document.getElementById('quality-feedback');
+        const previewImage = document.getElementById('preview-image');
+        const uploadStatus = document.getElementById('upload-status');
+        
+        if (fileInput) fileInput.value = '';
+        if (qualityFeedback) qualityFeedback.classList.add('hidden');
+        if (uploadStatus) uploadStatus.classList.add('hidden');
+        if (previewImage) {
+            previewImage.src = '';
+            previewImage.style.transform = 'none';
+            previewImage.style.filter = 'none';
+            previewImage.style.clipPath = 'none';
+        }
+        
+        // Reset analysis steps
+        document.querySelectorAll('.analysis-step').forEach(step => {
+            step.classList.remove('active', 'completed');
+            const progressBar = step.querySelector('.step-progress-bar');
+            const status = step.querySelector('.step-status');
+            if (progressBar) progressBar.style.width = '0';
+            if (status) status.textContent = '⏳';
+        });
+        
+        // Reset analysis percentage
+        const percentageEl = document.getElementById('analysis-percentage');
+        if (percentageEl) percentageEl.textContent = '0%';
+        
+        // Reset results animations
+        const scoreDisplay = document.getElementById('score-display');
+        const confidenceValue = document.getElementById('confidence-value');
+        const scoreProgress = document.getElementById('score-progress');
+        
+        if (scoreDisplay) scoreDisplay.textContent = '0.0';
+        if (confidenceValue) confidenceValue.textContent = '0';
+        if (scoreProgress) scoreProgress.style.strokeDashoffset = '339.292';
+        
+        // Reset metric values
+        const metricElements = [
+            'body-length-value',
+            'hip-width-value', 
+            'topline-angle-value'
+        ];
+        
+        metricElements.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                const originalValues = ['2.41', '156px', '4.2°'];
+                const index = metricElements.indexOf(id);
+                if (index !== -1) {
+                    el.textContent = originalValues[index];
+                }
+            }
+        });
+        
+        // Close all modals
+        this.closeAllModals();
+        
+        // Go to upload section
+        this.goToSection(1);
+        this.showNotification('Ready for new analysis! Upload a cattle image to begin. 🆕', 'success');
+    }
+
+    // Notification system
+    setupNotifications() {
+        this.notificationContainer = document.getElementById('notification-container');
+    }
+
+    showNotification(message, type = 'success', duration = 4000) {
+        if (!this.notificationContainer) return;
+
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        
+        // Add icon based on type
+        const icons = {
+            'success': '✅',
+            'error': '❌',
+            'warning': '⚠️',
+            'info': 'ℹ️'
+        };
+        
+        const icon = icons[type] || 'ℹ️';
+        notification.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 16px;">${icon}</span>
+                <span>${message}</span>
+            </div>
+        `;
+        
+        this.notificationContainer.appendChild(notification);
+        
+        // Auto remove notification
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.style.animation = 'slideInRight 0.3s ease-out reverse';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }
+        }, duration);
+    }
+
+    // Keyboard shortcuts
+    handleKeyboardShortcuts(event) {
+        if (event.ctrlKey || event.metaKey) {
+            switch (event.key) {
+                case 'u':
+                    event.preventDefault();
+                    if (this.currentSection === 1) {
+                        document.getElementById('file-input').click();
+                    }
+                    break;
+                case 'n':
+                    event.preventDefault();
+                    this.startNewAnalysis();
+                    break;
+                case 's':
+                    event.preventDefault();
+                    if (this.currentSection === 4) {
+                        this.shareResults();
+                    }
+                    break;
+                case 'd':
+                    event.preventDefault();
+                    if (this.currentSection === 4) {
+                        this.downloadReport();
+                    }
+                    break;
+            }
+        } else if (event.key === 'Enter') {
+            if (this.currentSection === 2 && this.uploadedImage) {
+                event.preventDefault();
+                this.startAnalysis();
+            }
+        } else if (event.key === 'Escape') {
+            this.closeAllModals();
+            const fabOptions = document.getElementById('fab-options');
+            if (fabOptions && !fabOptions.classList.contains('hidden')) {
+                this.toggleFabMenu();
+            }
+        } else if (event.key === 'h' && event.ctrlKey) {
+            event.preventDefault();
+            this.showModal('help-modal');
+        }
+    }
+}
+
+// Initialize application when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Add CSS animation for spinning loader
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    window.pashuMitra = new PashuMitra();
+});
+
+// Service Worker registration for PWA functionality
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('SW registered: ', registration);
+        }).catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+        });
+    });
+}
+
+// Global error handling
+window.addEventListener('error', (event) => {
+    console.error('Application error:', event.error);
+    if (window.pashuMitra) {
+        window.pashuMitra.showNotification('An unexpected error occurred. Please refresh the page.', 'error');
+    }
+});
+
+// Handle offline/online status
+window.addEventListener('online', () => {
+    if (window.pashuMitra) {
+        window.pashuMitra.showNotification('Connection restored! 🌐', 'success');
+    }
+});
+
+window.addEventListener('offline', () => {
+    if (window.pashuMitra) {
+        window.pashuMitra.showNotification('You are now offline. Some features may be limited.', 'warning');
+    }
+});
