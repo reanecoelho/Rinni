@@ -3,74 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PashuMitra - AI Cattle Health Assessment</title>
+    <title>PashuMitra - AI Health Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="cow-icon">🐄</div>
-            <h2>PashuMitra</h2>
-            <p>Loading AI Assessment System...</p>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
+    <div class="container">
+        <div class="header">
+            <h1>🐄 PashuMitra Health Assessment</h1>
+            <p>AI-Powered Body Conformation Scoring</p>
+        </div>
+
+        <div class="main-content">
+            <section class="app-section" id="uploadSection">
+                <h3 class="section-title"><i class="fas fa-camera"></i> Upload Cattle Photo</h3>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="upload-text">Drag & drop photo here or tap to select</div>
+                    <input type="file" id="imageInput" class="file-input" accept="image/*">
+                </div>
+            </section>
+
+            <section class="app-section" id="previewSection">
+                <h3 class="section-title"><i class="fas fa-image"></i> Image Preview</h3>
+                <div class="image-container">
+                    <img id="previewImage" class="preview-image" alt="Cattle preview">
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" id="changePhotoBtn"><i class="fas fa-sync-alt"></i> Change Photo</button>
+                    <button class="btn btn-primary" id="analyzeBtn"><i class="fas fa-search"></i> Analyze Health</button>
+                </div>
+            </section>
+
+            <section class="app-section" id="resultsSection">
+                 <h3 class="section-title"><i class="fas fa-chart-bar"></i> Analysis Results</h3>
+                <div class="score-card">
+                    <div class="score-label">Overall Health Score</div>
+                    <div class="overall-score" id="overallScore">0.0</div>
+                    <div class="status-badge" id="statusBadge">ANALYZING...</div>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon"><i class="fas fa-ruler-combined"></i></div>
+                        <div class="metric-value" id="bodyLengthMetric">0.00</div>
+                        <div class="metric-label">Body Length Ratio</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="metric-value" id="confidenceMetric">0%</div>
+                        <div class="metric-label">Detection Confidence</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="analyzeAnotherBtn"><i class="fas fa-redo-alt"></i> Analyze Another</button>
+                </div>
+            </section>
         </div>
     </div>
-
-    <div id="app" class="app hidden">
-        <header class="header">
-            <div class="header-content">
-                <div class="brand">
-                    <h1>🐄 PashuMitra</h1>
-                    <span class="hackathon-badge">Smart India Hackathon 2025</span>
-                </div>
-                <div class="header-controls">
-                    <select id="language-selector" class="form-control language-selector">
-                        <option value="en">English</option>
-                        <option value="hi">Hindi (हिन्दी)</option>
-                    </select>
-                </div>
-            </div>
-        </header>
-
-        <nav class="progress-nav">
-            <div class="progress-steps">
-                <div class="progress-step active" data-step="1">
-                    <div class="step-circle">1</div>
-                    <span>Upload</span>
-                </div>
-                <div class="progress-step" data-step="2">
-                    <div class="step-circle">2</div>
-                    <span>Preview</span>
-                </div>
-            </div>
-        </nav>
-
-        <main class="main-content">
-            <section id="upload-section" class="section active">
-                <div class="upload-container">
-                    <h4>Upload Cattle Image</h4>
-                    <p>Drag & drop or select a file</p>
-                    <div class="upload-area" id="upload-area">
-                        <div class="upload-icon">📁</div>
-                        <input type="file" id="file-input" hidden>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="preview-section" class="section">
-                 <div class="preview-container">
-                    <h4>Image Preview</h4>
-                    <img id="preview-image" src="" alt="Cattle Preview" class="preview-img">
-                    <div class="button-group">
-                         <button id="back-to-upload" class="btn btn--secondary">Back</button>
-                         <button id="start-analysis" class="btn btn--primary">Analyze</button>
-                    </div>
-                 </div>
-            </section>
-        </main>
-    </div>
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
