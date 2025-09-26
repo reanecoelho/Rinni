@@ -1,5 +1,4 @@
 // PashuMitra Application JavaScript
-
 class PashuMitra {
     constructor() {
         this.currentStep = 1;
@@ -8,44 +7,47 @@ class PashuMitra {
     }
 
     init() {
-        // Hide loading screen after 3 seconds
+        // This is the function that hides the loading screen
         setTimeout(() => {
-            document.getElementById('loading-screen').style.display = 'none';
-            document.getElementById('app').classList.remove('hidden');
-        }, 3000);
+            const loadingScreen = document.getElementById('loading-screen');
+            const app = document.getElementById('app');
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+            }
+            if (app) {
+                app.classList.remove('hidden');
+            }
+        }, 3000); // Hides after 3 seconds
 
         this.setupEventListeners();
     }
 
     setupEventListeners() {
-        // --- UPLOAD PAGE ---
         const uploadArea = document.getElementById('upload-area');
-        const takePhotoBtn = document.getElementById('take-photo-btn');
-        const chooseFileBtn = document.getElementById('choose-file-btn');
         const fileInput = document.getElementById('file-input');
+        const backButton = document.getElementById('back-to-upload');
+        const analyzeButton = document.getElementById('start-analysis');
 
-        uploadArea.addEventListener('click', () => fileInput.click());
-        takePhotoBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            fileInput.click();
-        });
-        chooseFileBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            fileInput.click();
-        });
-        fileInput.addEventListener('change', (e) => this.handleFileSelect(e));
-
-        // You can add event listeners for other sections (preview, analysis, results) here
-        // For now, this setup makes the first page interactive.
+        if (uploadArea) {
+            uploadArea.addEventListener('click', () => fileInput.click());
+        }
+        if (fileInput) {
+            fileInput.addEventListener('change', (e) => this.handleFileSelect(e));
+        }
+        if (backButton) {
+            backButton.addEventListener('click', () => this.goToSection(1));
+        }
+        if (analyzeButton) {
+            analyzeButton.addEventListener('click', () => alert("Analysis would start now!"));
+        }
     }
 
     handleFileSelect(event) {
         const file = event.target.files[0];
         if (file && file.type.startsWith('image/')) {
             this.uploadedImage = URL.createObjectURL(file);
-            console.log("Image selected:", file.name);
-            alert("Image selected successfully! The next step would show a preview.");
-            // To see the next step, you would call: this.goToSection(2);
+            document.getElementById('preview-image').src = this.uploadedImage;
+            this.goToSection(2);
         } else {
             alert("Please select a valid image file.");
         }
@@ -53,28 +55,18 @@ class PashuMitra {
 
     goToSection(stepNumber) {
         // Hide all sections
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+        // Show target section
+        const sectionId = ['upload', 'preview'][stepNumber - 1] + '-section';
+        document.getElementById(sectionId).classList.add('active');
 
-        // Show the target section
-        const sectionId = ['upload', 'preview', 'analysis', 'results'][stepNumber - 1] + '-section';
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-            targetSection.classList.add('active');
-        }
-
-        // Update progress stepper
-        const progressSteps = document.querySelectorAll('.progress-step');
-        progressSteps.forEach(step => {
-            const stepNum = parseInt(step.dataset.step);
-            step.classList.remove('active', 'completed');
-            if (stepNum < stepNumber) {
-                step.classList.add('completed');
-            } else if (stepNum === stepNumber) {
+        // Update progress steps
+        document.querySelectorAll('.progress-step').forEach(step => {
+            step.classList.remove('active');
+            if (parseInt(step.dataset.step) === stepNumber) {
                 step.classList.add('active');
             }
         });
-
         this.currentStep = stepNumber;
     }
 }
