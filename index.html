@@ -3,154 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PashuMitra - AI Cattle Health Assessment</title>
+    <title>PashuMitra - Animated Health Results</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="cow-icon">🐄</div>
-            <h2>PashuMitra</h2>
-            <p>Initializing AI Assessment System...</p>
-            <div class="progress-bar"><div class="progress-fill"></div></div>
-        </div>
-    </div>
-
     <svg width="0" height="0" style="position: absolute;">
         <defs>
             <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#66BB6A" />
-                <stop offset="50%" stop-color="#42A5F5" />
-                <stop offset="100%" stop-color="#AB47BC" />
+                <stop offset="0%" stop-color="#4CAF50" />
+                <stop offset="50%" stop-color="#2196F3" />
+                <stop offset="100%" stop-color="#9C27B0" />
             </linearGradient>
         </defs>
     </svg>
 
-    <div id="app" class="app hidden">
-        <header class="header">
-            <div class="header-content">
-                <div class="brand">
-                    <h1>🐄 PashuMitra</h1>
-                    <span class="hackathon-badge">Smart India Hackathon 2025</span>
-                </div>
-                <div class="header-controls">
-                    <select id="language-selector" class="form-control language-selector">
-                        <option value="en">English</option>
-                        <option value="hi">Hindi (हिन्दी)</option>
-                    </select>
-                    <button id="voice-btn" class="btn btn--secondary voice-btn" aria-label="Toggle Voice Commands">
-                        <i class="fas fa-microphone-alt voice-icon"></i>
-                    </button>
-                </div>
+    <div class="results-container">
+        <div class="health-score-dial">
+            <svg class="score-ring" width="200" height="200">
+                <circle class="score-bg" cx="100" cy="100" r="90"></circle>
+                <circle class="score-fill" id="score-progress" cx="100" cy="100" r="90"></circle>
+            </svg>
+            <div class="score-content">
+                <div class="score-value" id="score-display">0.0</div>
+                <div class="score-max">/ 10</div>
+                <div class="status-badge status-excellent" id="health-status">Excellent Health</div>
+                <div class="confidence">Confidence: <span id="confidence-value">0</span>%</div>
             </div>
-        </header>
+        </div>
 
-        <nav class="progress-nav">
-            <div class="progress-steps">
-                <div class="progress-step active" data-step="1"><div class="step-circle">1</div><span>Upload</span></div>
-                <div class="progress-step" data-step="2"><div class="step-circle">2</div><span>Preview</span></div>
-                <div class="progress-step" data-step="3"><div class="step-circle">3</div><span>Analysis</span></div>
-                <div class="progress-step" data-step="4"><div class="step-circle">4</div><span>Results</span></div>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fas fa-ruler-horizontal"></i></div>
+                <div class="metric-details">
+                    <span class="metric-label">Body Length Ratio</span>
+                    <span class="metric-value" id="body-length-value">0.00</span>
+                </div>
+                <span class="metric-status status-excellent">Optimal</span>
             </div>
-        </nav>
-
-        <main class="main-content">
-            <section id="upload-section" class="section active">
-                <div class="camera-guidelines">
-                    <h3>For Best AI Results</h3>
-                    <div class="guidelines-grid">
-                        <div class="guideline-item" style="background-color: var(--color-bg-2);"><i class="fas fa-sun guideline-icon"></i><span>Good Lighting</span></div>
-                        <div class="guideline-item" style="background-color: var(--color-bg-8);"><i class="fas fa-expand guideline-icon"></i><span>Full Body Visible</span></div>
-                        <div class="guideline-item" style="background-color: var(--color-bg-3);"><i class="fas fa-user guideline-icon"></i><span>Side Profile</span></div>
-                    </div>
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fas fa-ruler-combined"></i></div>
+                <div class="metric-details">
+                    <span class="metric-label">Hip Width</span>
+                    <span class="metric-value" id="hip-width-value">0px</span>
                 </div>
-                <div class="upload-area" id="upload-area">
-                    <div class="upload-content">
-                        <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                        <h4>Upload Cattle Image</h4>
-                        <p>Drag & drop your image here, or click to select a file</p>
-                        <input type="file" id="file-input" accept="image/*" hidden>
-                        <div class="upload-buttons">
-                            <button id="take-photo-btn" class="btn btn--primary"><i class="fas fa-camera"></i> Take Photo</button>
-                            <button id="choose-file-btn" class="btn btn--secondary"><i class="fas fa-folder-open"></i> Choose File</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="preview-section" class="section">
-                <div class="preview-content">
-                    <div class="image-preview card">
-                        <img id="preview-image" src="" alt="Cattle preview" class="preview-img">
-                    </div>
-                    <div class="preview-actions">
-                        <button class="btn btn--secondary" id="back-to-upload"><i class="fas fa-arrow-left"></i> Change Photo</button>
-                        <button class="btn btn--primary" id="start-analysis">Start AI Analysis <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-            </section>
-
-            <section id="analysis-section" class="section">
-                <div class="analysis-content">
-                    <div class="scanning-visualization">
-                        <div class="scan-lines"><div class="scan-line"></div><div class="scan-line"></div></div>
-                        <h3>AI Analysis in Progress...</h3>
-                    </div>
-                    <div class="analysis-steps">
-                        <div class="analysis-step" data-step="1"><div class="step-icon">🧠</div><div class="step-content"><h4>Detecting Key Features</h4><p>Scanning for key body points and landmarks.</p></div><div class="step-status"></div></div>
-                        <div class="analysis-step" data-step="2"><div class="step-icon">📏</div><div class="step-content"><h4>Measuring Proportions</h4><p>Calculating length, width, and angle measurements.</p></div><div class="step-status"></div></div>
-                        <div class="analysis-step" data-step="3"><div class="step-icon">🧬</div><div class="step-content"><h4>Breed Identification</h4><p>Matching features against our breed database.</p></div><div class="step-status"></div></div>
-                        <div class="analysis-step" data-step="4"><div class="step-icon">📊</div><div class="step-content"><h4>Calculating Health Score</h4><p>Processing conformation and health indicators.</p></div><div class="step-status"></div></div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="results-section" class="section">
-                <div class="results-header">
-                    <div class="health-score-circle">
-                        <svg class="score-ring" width="140" height="140"><circle cx="70" cy="70" r="65" class="score-bg"></circle><circle cx="70" cy="70" r="65" class="score-fill" id="score-progress"></circle></svg>
-                        <div class="score-content"><div class="score-value" id="score-display">0.0</div><div class="score-max">/ 10</div></div>
-                    </div>
-                    <div class="health-info">
-                        <div id="health-status" class="status">Calculating...</div>
-                        <div class="confidence">Confidence: <span id="confidence-value">0</span>%</div>
-                    </div>
-                </div>
-                <div class="metrics-grid">
-                    <div class="metric-card card" data-metric="bodyLength"><div class="metric-icon"><i class="fas fa-ruler-horizontal"></i></div><div class="metric-content"><div class="metric-label">Body Length Ratio</div><div class="metric-value" id="body-length-value">0.0</div><div class="metric-status status">...</div></div></div>
-                    <div class="metric-card card" data-metric="hipWidth"><div class="metric-icon"><i class="fas fa-ruler-combined"></i></div><div class="metric-content"><div class="metric-label">Hip Width</div><div class="metric-value" id="hip-width-value">0px</div><div class="metric-status status">...</div></div></div>
-                    <div class="metric-card card" data-metric="toplineAngle"><div class="metric-icon"><i class="fas fa-chart-line"></i></div><div class="metric-content"><div class="metric-label">Topline Angle</div><div class="metric-value" id="topline-angle-value">0°</div><div class="metric-status status">...</div></div></div>
-                </div>
-                <div class="analysis-accordion">
-                    <div class="accordion-item card"><button class="accordion-header"><span>💡 Care Recommendations</span><i class="fas fa-chevron-down accordion-icon"></i></button><div class="accordion-content"><p id="recommendations-content">Recommendations will appear here.</p></div></div>
-                </div>
-                <div class="results-actions">
-                    <button class="btn btn--secondary" id="download-report"><i class="fas fa-file-download"></i> Download Report</button>
-                    <button class="btn btn--primary" id="new-analysis"><i class="fas fa-redo-alt"></i> New Analysis</button>
-                </div>
-            </section>
-        </main>
-
-        <div class="fab-menu">
-            <div class="fab-options hidden" id="fab-options">
-                <button class="fab-option" data-action="help" title="Help"><i class="fas fa-question"></i></button>
-                <button class="fab-option" data-action="history" title="History"><i class="fas fa-history"></i></button>
+                <span class="metric-status status-good">Good</span>
             </div>
-            <button class="fab-main" id="fab-toggle"><i class="fas fa-bars"></i></button>
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="metric-details">
+                    <span class="metric-label">Topline Angle</span>
+                    <span class="metric-value" id="topline-angle-value">0.0°</span>
+                </div>
+                <span class="metric-status status-excellent">Excellent</span>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span><i class="fas fa-notes-medical"></i> Care Recommendations</span>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+            </button>
+            <div class="accordion-content">
+                <p>Animal shows excellent conformation. Continue current nutrition and care regimen. Monitor for any changes in posture or movement.</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-secondary"><i class="fas fa-share-alt"></i> Share Results</button>
+            <button class="btn btn-secondary"><i class="fas fa-file-download"></i> Download Report</button>
+            <button class="btn btn-primary"><i class="fas fa-redo-alt"></i> New Analysis</button>
         </div>
     </div>
 
-    <div class="modal hidden" id="main-modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header"><h3 id="modal-title"></h3><button class="modal-close"><i class="fas fa-times"></i></button></div>
-            <div class="modal-body" id="modal-body"></div>
-        </div>
-    </div>
-
-    <div class="notification-container" id="notification-container"></div>
-
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
