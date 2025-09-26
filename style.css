@@ -747,7 +747,7 @@ select.form-control {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  background: linear-gradient(135deg, #4DD0E1 0%, #FF8A65 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -805,7 +805,7 @@ select.form-control {
 
 /* Header */
 .header {
-  background: #4CAF50;
+  background: linear-gradient(135deg, #4DD0E1 0%, #FF8A65 100%);
   color: white;
   padding: var(--space-16) 0;
   box-shadow: var(--shadow-md);
@@ -911,7 +911,7 @@ select.form-control {
 
 .progress-step.active:not(:last-child)::after,
 .progress-step.completed:not(:last-child)::after {
-  background: #4CAF50;
+  background: linear-gradient(90deg, #66BB6A, #42A5F5);
 }
 
 .step-circle {
@@ -929,13 +929,27 @@ select.form-control {
   transition: all var(--duration-normal) var(--ease-standard);
 }
 
-.progress-step.active .step-circle {
-  background: #4CAF50;
+.progress-step[data-step="1"].active .step-circle,
+.progress-step[data-step="1"].completed .step-circle {
+  background: #66BB6A;
   color: white;
 }
 
-.progress-step.completed .step-circle {
-  background: #2E7D32;
+.progress-step[data-step="2"].active .step-circle,
+.progress-step[data-step="2"].completed .step-circle {
+  background: #42A5F5;
+  color: white;
+}
+
+.progress-step[data-step="3"].active .step-circle,
+.progress-step[data-step="3"].completed .step-circle {
+  background: #AB47BC;
+  color: white;
+}
+
+.progress-step[data-step="4"].active .step-circle,
+.progress-step[data-step="4"].completed .step-circle {
+  background: #BA68C8;
   color: white;
 }
 
@@ -946,7 +960,8 @@ select.form-control {
 }
 
 .progress-step.active span {
-  color: #4CAF50;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
 }
 
 /* Main Content */
@@ -990,8 +1005,30 @@ select.form-control {
   align-items: center;
   gap: var(--space-8);
   padding: var(--space-16);
-  background: var(--color-bg-3);
   border-radius: var(--radius-lg);
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.guideline-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.guideline-item:nth-child(1) {
+  background: #FDD835;
+}
+
+.guideline-item:nth-child(2) {
+  background: #26C6DA;
+  color: white;
+}
+
+.guideline-item:nth-child(3) {
+  background: #EC407A;
+  color: white;
 }
 
 .guideline-icon {
@@ -1003,19 +1040,19 @@ select.form-control {
   border-radius: var(--radius-lg);
   padding: var(--space-32);
   text-align: center;
-  background: var(--color-surface);
+  background: #FFFFFF;
   transition: all var(--duration-normal) var(--ease-standard);
   cursor: pointer;
 }
 
 .upload-area:hover {
-  border-color: #4CAF50;
-  background: var(--color-bg-3);
+  border-color: #FF8A65;
+  background: rgba(255, 138, 101, 0.05);
 }
 
 .upload-area.dragover {
-  border-color: #4CAF50;
-  background: var(--color-bg-3);
+  border-color: #FF8A65;
+  background: rgba(255, 138, 101, 0.1);
   transform: scale(1.02);
 }
 
@@ -1027,7 +1064,7 @@ select.form-control {
 .upload-icon {
   font-size: 4rem;
   margin-bottom: var(--space-16);
-  opacity: 0.7;
+  color: #FF8A65;
 }
 
 .upload-content h4 {
@@ -1049,6 +1086,30 @@ select.form-control {
 
 .upload-buttons .btn {
   min-width: 140px;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-buttons .btn--primary {
+  background: linear-gradient(135deg, #4DD0E1, #FF8A65);
+  color: white;
+  border: none;
+}
+
+.upload-buttons .btn--primary:hover {
+  background: linear-gradient(135deg, #26C6DA, #FF7043);
+  transform: translateY(-2px);
+}
+
+.upload-buttons .btn--outline {
+  border: 2px solid #FF8A65;
+  color: #FF8A65;
+  background: white;
+}
+
+.upload-buttons .btn--outline:hover {
+  background: #FF8A65;
+  color: white;
 }
 
 /* Quality Feedback */
@@ -1124,6 +1185,17 @@ select.form-control {
   flex-wrap: wrap;
 }
 
+.image-controls .btn {
+  background: linear-gradient(135deg, #42A5F5, #AB47BC);
+  color: white;
+  border: none;
+}
+
+.image-controls .btn:hover {
+  background: linear-gradient(135deg, #1E88E5, #9C27B0);
+  transform: translateY(-2px);
+}
+
 .preview-actions {
   display: flex;
   justify-content: space-between;
@@ -1134,6 +1206,15 @@ select.form-control {
 .preview-actions .btn {
   flex: 1;
   min-width: 120px;
+}
+
+.preview-actions .btn--primary {
+  background: linear-gradient(135deg, #AB47BC, #BA68C8);
+  color: white;
+}
+
+.preview-actions .btn--primary:hover {
+  background: linear-gradient(135deg, #9C27B0, #AB47BC);
 }
 
 /* Analysis Section */
@@ -1150,6 +1231,7 @@ select.form-control {
   border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(171, 71, 188, 0.2);
 }
 
 .scan-lines {
@@ -1164,7 +1246,7 @@ select.form-control {
   position: absolute;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+  background: linear-gradient(90deg, transparent, #AB47BC, transparent);
   animation: scanningLine 2s linear infinite;
 }
 
@@ -1209,13 +1291,15 @@ select.form-control {
 
 .analysis-step.active {
   opacity: 1;
-  border-color: #4CAF50;
-  background: var(--color-bg-3);
+  border-color: #AB47BC;
+  background: rgba(171, 71, 188, 0.05);
+  box-shadow: 0 0 20px rgba(171, 71, 188, 0.1);
 }
 
 .analysis-step.completed {
   opacity: 1;
-  border-color: #2E7D32;
+  border-color: #66BB6A;
+  background: rgba(102, 187, 106, 0.05);
 }
 
 .step-icon {
@@ -1249,7 +1333,7 @@ select.form-control {
 
 .step-progress-bar {
   height: 100%;
-  background: #4CAF50;
+  background: linear-gradient(90deg, #AB47BC, #BA68C8);
   border-radius: var(--radius-full);
   width: 0;
   transition: width var(--duration-normal) var(--ease-standard);
@@ -1286,7 +1370,7 @@ select.form-control {
 
 .score-fill {
   fill: none;
-  stroke: #4CAF50;
+  stroke: url(#scoreGradient);
   stroke-width: 8;
   stroke-dasharray: 339.292;
   stroke-dashoffset: 339.292;
@@ -1305,7 +1389,10 @@ select.form-control {
 .score-value {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
-  color: #4CAF50;
+  background: linear-gradient(135deg, #4DD0E1, #AB47BC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .score-max {
@@ -1345,6 +1432,18 @@ select.form-control {
   cursor: pointer;
   transition: all var(--duration-normal) var(--ease-standard);
   animation: slideInUp 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4DD0E1, #FF8A65, #AB47BC);
 }
 
 .metric-card:hover {
@@ -1362,6 +1461,10 @@ select.form-control {
   font-size: var(--font-size-2xl);
   width: 50px;
   text-align: center;
+  background: linear-gradient(135deg, #4DD0E1, #AB47BC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .metric-content {
@@ -1409,11 +1512,12 @@ select.form-control {
 }
 
 .accordion-header:hover {
-  background: var(--color-bg-1);
+  background: rgba(77, 208, 225, 0.05);
 }
 
 .accordion-icon {
   transition: transform var(--duration-fast) var(--ease-standard);
+  color: #AB47BC;
 }
 
 .accordion-item.expanded .accordion-icon {
@@ -1424,7 +1528,7 @@ select.form-control {
   max-height: 0;
   overflow: hidden;
   transition: max-height var(--duration-normal) var(--ease-standard);
-  background: var(--color-bg-1);
+  background: rgba(77, 208, 225, 0.03);
 }
 
 .accordion-item.expanded .accordion-content {
@@ -1452,6 +1556,28 @@ select.form-control {
 
 .results-actions .btn {
   min-width: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.results-actions .btn--primary {
+  background: linear-gradient(135deg, #4DD0E1, #FF8A65);
+  color: white;
+  border: none;
+}
+
+.results-actions .btn--primary:hover {
+  background: linear-gradient(135deg, #26C6DA, #FF7043);
+}
+
+.results-actions .btn--secondary {
+  background: linear-gradient(135deg, #AB47BC, #BA68C8);
+  color: white;
+  border: none;
+}
+
+.results-actions .btn--secondary:hover {
+  background: linear-gradient(135deg, #9C27B0, #AB47BC);
 }
 
 /* Floating Action Button */
@@ -1466,7 +1592,7 @@ select.form-control {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #7B1FA2;
   color: white;
   border: none;
   box-shadow: var(--shadow-lg);
@@ -1476,7 +1602,8 @@ select.form-control {
 
 .fab-main:hover {
   transform: scale(1.1);
-  box-shadow: var(--shadow-lg);
+  background: #6A1B9A;
+  box-shadow: 0 8px 25px rgba(123, 31, 162, 0.3);
 }
 
 .fab-options {
@@ -1506,6 +1633,8 @@ select.form-control {
 
 .fab-option:hover {
   transform: scale(1.1);
+  background: #7B1FA2;
+  color: white;
 }
 
 /* Modal */
@@ -1546,6 +1675,7 @@ select.form-control {
   position: relative;
   z-index: 1;
   animation: modalSlideIn 0.3s ease-out;
+  border-top: 3px solid #AB47BC;
 }
 
 .modal-header {
@@ -1554,6 +1684,7 @@ select.form-control {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: rgba(171, 71, 188, 0.05);
 }
 
 .modal-close {
@@ -1588,15 +1719,16 @@ select.form-control {
   box-shadow: var(--shadow-md);
   max-width: 300px;
   animation: slideInRight 0.3s ease-out;
+  border-left: 4px solid #4DD0E1;
 }
 
 .notification.success {
-  border-color: #4CAF50;
-  background: var(--color-bg-3);
+  border-left-color: #66BB6A;
+  background: rgba(102, 187, 106, 0.05);
 }
 
 .notification.error {
-  border-color: var(--color-error);
+  border-left-color: var(--color-error);
   background: var(--color-bg-4);
 }
 
