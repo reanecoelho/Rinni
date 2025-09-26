@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
             <div class="cow-icon">🐄</div>
@@ -19,9 +18,17 @@
         </div>
     </div>
 
-    <!-- Main Application -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#4DD0E1;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#AB47BC;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#FF8A65;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
+
     <div id="app" class="app hidden">
-        <!-- Header -->
         <header class="header">
             <div class="header-content">
                 <div class="brand">
@@ -29,256 +36,6 @@
                     <span class="hackathon-badge">Smart India Hackathon 2025</span>
                 </div>
                 <div class="header-controls">
-                    <select id="language-selector" class="language-selector">
+                    <select id="language-selector" class="form-control language-selector">
                         <option value="en">English</option>
                         <option value="hi">Hindi (हिन्दी)</option>
-                        <option value="bn">Bengali (বাংলা)</option>
-                        <option value="te">Telugu (తెలుగు)</option>
-                        <option value="mr">Marathi (मराठी)</option>
-                        <option value="ta">Tamil (தமிழ்)</option>
-                        <option value="gu">Gujarati (ગુજરાતી)</option>
-                        <option value="kn">Kannada (ಕನ್ನಡ)</option>
-                        <option value="ml">Malayalam (മലയാളം)</option>
-                        <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
-                        <option value="ur">Urdu (اردو)</option>
-                        <option value="or">Odia (ଓଡିଆ)</option>
-                        <option value="as">Assamese (অসমীয়া)</option>
-                    </select>
-                </div>
-            </div>
-        </header>
-
-        <!-- Progress Steps -->
-        <div class="progress-steps">
-            <div class="step-container">
-                <div class="step active" data-step="1">
-                    <div class="step-circle">1</div>
-                    <div class="step-label">Upload</div>
-                </div>
-                <div class="progress-line"></div>
-                <div class="step" data-step="2">
-                    <div class="step-circle">2</div>
-                    <div class="step-label">Preview</div>
-                </div>
-                <div class="progress-line"></div>
-                <div class="step" data-step="3">
-                    <div class="step-circle">3</div>
-                    <div class="step-label">Analysis</div>
-                </div>
-                <div class="progress-line"></div>
-                <div class="step" data-step="4">
-                    <div class="step-circle">4</div>
-                    <div class="step-label">Results</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Upload Section -->
-            <div id="upload-section" class="section active">
-                <div class="section-header">
-                    <h2>📸 Capture Cattle Photo</h2>
-                    <p>Get instant AI-powered health assessment</p>
-                </div>
-                
-                <!-- Guidelines Cards -->
-                <div class="guidelines">
-                    <div class="guideline-card lighting">
-                        <div class="guideline-icon">☀️</div>
-                        <div class="guideline-text">Good lighting</div>
-                    </div>
-                    <div class="guideline-card body">
-                        <div class="guideline-icon">📏</div>
-                        <div class="guideline-text">Full body visible</div>
-                    </div>
-                    <div class="guideline-card profile">
-                        <div class="guideline-icon">👤</div>
-                        <div class="guideline-text">Side profile</div>
-                    </div>
-                </div>
-
-                <!-- Upload Area -->
-                <div class="upload-area" id="upload-area">
-                    <div class="upload-content">
-                        <div class="upload-icon">📱</div>
-                        <h3>Upload Cattle Image</h3>
-                        <p>Take a photo or choose from gallery</p>
-                        <div class="upload-buttons">
-                            <button id="take-photo-btn" class="btn btn-primary">
-                                📷 Take Photo
-                            </button>
-                            <button id="choose-file-btn" class="btn btn-secondary">
-                                📁 Choose File
-                            </button>
-                        </div>
-                    </div>
-                    <input type="file" id="file-input" accept="image/*" capture="environment" style="display: none;">
-                </div>
-                
-                <!-- Upload Progress -->
-                <div id="upload-progress" class="upload-progress hidden">
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <div class="progress-text">Uploading image...</div>
-                </div>
-            </div>
-
-            <!-- Preview Section -->
-            <div id="preview-section" class="section">
-                <div class="section-header">
-                    <h2>🖼️ Image Preview</h2>
-                    <p>Review and enhance your photo</p>
-                </div>
-                
-                <div class="preview-container">
-                    <div class="image-container">
-                        <img id="preview-image" src="" alt="Preview" />
-                        <div class="image-overlay">
-                            <div class="edit-controls">
-                                <button id="rotate-btn" class="control-btn">🔄</button>
-                                <button id="enhance-btn" class="control-btn">✨</button>
-                                <button id="crop-btn" class="control-btn">✂️</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="preview-actions">
-                    <button id="back-to-upload" class="btn btn-secondary">← Back</button>
-                    <button id="start-analysis" class="btn btn-primary">🧠 Start Analysis</button>
-                </div>
-            </div>
-
-            <!-- Analysis Section -->
-            <div id="analysis-section" class="section">
-                <div class="section-header">
-                    <h2>🧠 AI Analysis</h2>
-                    <p>Processing your cattle image</p>
-                </div>
-                
-                <div class="analysis-container">
-                    <div class="scanning-animation">
-                        <div class="scan-line"></div>
-                        <div class="scan-grid"></div>
-                    </div>
-                    
-                    <div class="analysis-steps">
-                        <div class="analysis-step" id="step-detect">
-                            <div class="step-icon">🔍</div>
-                            <div class="step-text">Detecting features</div>
-                            <div class="step-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="analysis-step" id="step-measure">
-                            <div class="step-icon">📏</div>
-                            <div class="step-text">Measuring proportions</div>
-                            <div class="step-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="analysis-step" id="step-calculate">
-                            <div class="step-icon">📊</div>
-                            <div class="step-text">Calculating metrics</div>
-                            <div class="step-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="analysis-step" id="step-identify">
-                            <div class="step-icon">🧬</div>
-                            <div class="step-text">Breed identification</div>
-                            <div class="step-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Results Section -->
-            <div id="results-section" class="section">
-                <div class="section-header">
-                    <h2>📊 Health Assessment</h2>
-                    <p>Comprehensive analysis results</p>
-                </div>
-                
-                <div class="results-container">
-                    <div class="health-score">
-                        <svg class="score-circle" width="120" height="120">
-                            <circle cx="60" cy="60" r="50" fill="none" stroke="#E0E0E0" stroke-width="8"/>
-                            <circle cx="60" cy="60" r="50" fill="none" stroke="url(#scoreGradient)" stroke-width="8" 
-                                    stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" id="score-progress"/>
-                        </svg>
-                        <div class="score-content">
-                            <div class="score-number" id="score-number">8.7</div>
-                            <div class="score-label">Health Score</div>
-                        </div>
-                    </div>
-                    
-                    <div class="health-status">
-                        <h3 id="health-status-text">Excellent Health</h3>
-                        <p>Confidence: <span id="confidence-score">94%</span></p>
-                    </div>
-                </div>
-                
-                <div class="metrics-grid">
-                    <div class="metric-card" onclick="showMetricDetails('body-length')">
-                        <div class="metric-icon">📏</div>
-                        <div class="metric-value">2.41</div>
-                        <div class="metric-label">Body Length</div>
-                        <div class="metric-status optimal">Optimal</div>
-                    </div>
-                    
-                    <div class="metric-card" onclick="showMetricDetails('hip-width')">
-                        <div class="metric-icon">🗺️</div>
-                        <div class="metric-value">156px</div>
-                        <div class="metric-label">Hip Width</div>
-                        <div class="metric-status good">Good</div>
-                    </div>
-                    
-                    <div class="metric-card" onclick="showMetricDetails('topline-angle')">
-                        <div class="metric-icon">⚙️</div>
-                        <div class="metric-value">4.2°</div>
-                        <div class="metric-label">Topline Angle</div>
-                        <div class="metric-status excellent">Excellent</div>
-                    </div>
-                </div>
-                
-                <div class="results-actions">
-                    <button id="share-results" class="btn btn-secondary">📤 Share</button>
-                    <button id="download-report" class="btn btn-secondary">📥 Download</button>
-                    <button id="new-analysis" class="btn btn-primary">🔄 New Analysis</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Floating Action Button -->
-        <div class="fab-container">
-            <button class="fab" id="fab-menu">
-                <span class="fab-icon">⚙️</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal for metric details -->
-    <div id="metric-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-title">Metric Details</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Dynamic content -->
