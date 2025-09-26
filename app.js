@@ -1,89 +1,125 @@
-document.addEventListener('DOMContentLoaded', () => {
+// PashuMitra Application JavaScript
+class PashuMitra {
+    constructor() {
+        this.currentStep = 1;
+        this.uploadedImage = null;
+        this.init();
+    }
 
-    // --- CONFIGURATION ---
-    const MOCK_DATA = {
-        score: 8.7,
-        confidence: 94,
-        metrics: {
-            bodyLength: 2.41,
-            hipWidth: 156,
-            toplineAngle: 4.2
+    init() {
+        // Hide loading screen after animation
+        setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('app').classList.remove('hidden');
+        }, 3000);
+
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        // Upload functionality
+        document.getElementById('upload-area').addEventListener('click', () => document.getElementById('file-input').click());
+        document.getElementById('take-photo-btn').addEventListener('click', () => document.getElementById('file-input').click());
+        document.getElementById('choose-file-btn').addEventListener('click', () => document.getElementById('file-input').click());
+        document.getElementById('file-input').addEventListener('change', (e) => this.handleFileUpload(e));
+
+        // Navigation
+        document.getElementById('back-to-upload').addEventListener('click', () => this.goToSection(1));
+        document.getElementById('start-analysis').addEventListener('click', () => this.startAnalysis());
+        document.getElementById('new-analysis').addEventListener('click', () => this.goToSection(1));
+
+        // Accordion
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+    }
+
+    handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            this.uploadedImage = URL.createObjectURL(file);
+            document.getElementById('preview-image').src = this.uploadedImage;
+            this.goToSection(2);
         }
-    };
+    }
 
-    // --- DOM ELEMENTS ---
-    const scoreDisplay = document.getElementById('score-display');
-    const confidenceDisplay = document.getElementById('confidence-value');
-    const scoreProgress = document.getElementById('score-progress');
-    const bodyLengthDisplay = document.getElementById('body-length-value');
-    const hipWidthDisplay = document.getElementById('hip-width-value');
-    const toplineAngleDisplay = document.getElementById('topline-angle-value');
-    const accordionHeader = document.querySelector('.accordion-header');
+    goToSection(stepNumber) {
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+        // Show target section
+        const sectionId = ['upload', 'preview', 'analysis', 'results'][stepNumber - 1] + '-section';
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Update progress steps
+        document.querySelectorAll('.progress-step').forEach(step => {
+            const stepNum = parseInt(step.dataset.step);
+            step.classList.remove('active', 'completed');
+            if (stepNum < stepNumber) step.classList.add('completed');
+            if (stepNum === stepNumber) step.classList.add('active');
+        });
+
+        this.currentStep = stepNumber;
+    }
+
+    async startAnalysis() {
+        this.goToSection(3);
+        const analysisSteps = document.querySelectorAll('.analysis-step');
+        
+        for (let i = 0; i < analysisSteps.length; i++) {
+            analysisSteps[i].classList.add('active');
+            await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate work
+            analysisSteps[i].classList.replace('active', 'completed');
+            analysisSteps[i].querySelector('.step-status').textContent = '✅';
+        }
+
+        this.showResults();
+    }
+
+    showResults() {
+        this.goToSection(4);
+        
+        // Mock data
+        const results = { score: 8.7, confidence: 94, bodyLength: 2.41, hipWidth: 156, toplineAngle: 4.2 };
+        
+        // Animate results
+        this.animateValue('score-display', results.score, 1);
+        this.animateValue('confidence-value', results.confidence, 0);
+        this.animateValue('body-length-value', results.bodyLength, 2);
+        this.animateValue('hip-width-value', results.hipWidth, 0);
+        this.animateValue('topline-angle-value', results.toplineAngle, 1);
+
+        // Animate progress circle
+        const circle = document.getElementById('score-progress');
+        const circumference = 339.292;
+        const offset = circumference - (results.score / 10) * circumference;
+        circle.style.strokeDashoffset = offset;
+    }
     
-    // --- ANIMATION FUNCTIONS ---
-
-    /**
-     * Animates a number counting up from 0 to a target value.
-     */
-    function animateCountUp(element, target, decimals = 0, unit = '') {
-        let current = 0;
-        const duration = 2000; // Animation duration in ms
-        const stepTime = 20;   // Update interval in ms
-        const steps = duration / stepTime;
-        const increment = (target - current) / steps;
+    animateValue(id, end, decimals) {
+        const element = document.getElementById(id);
+        let start = 0;
+        const duration = 2000;
+        const range = end - start;
+        const increment = end > start ? 1 : -1;
+        const stepTime = Math.abs(Math.floor(duration / range));
 
         const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
+            start += increment * (range / (duration / 20));
+            if ((increment > 0 && start >= end) || (increment < 0 && start <= end)) {
+                start = end;
                 clearInterval(timer);
             }
-            element.textContent = `${current.toFixed(decimals)}${unit}`;
-        }, stepTime);
+            element.textContent = start.toFixed(decimals);
+        }, 20);
     }
+}
 
-    /**
-     * Animates the circular progress bar.
-     */
-    function animateProgressCircle(targetScore) {
-        const radius = scoreProgress.r.baseVal.value;
-        const circumference = 2 * Math.PI * radius;
-        const offset = circumference - (targetScore / 10) * circumference;
-        
-        // This triggers the CSS transition
-        scoreProgress.style.strokeDashoffset = offset;
-    }
-
-    // --- EVENT LISTENERS ---
-
-    // Accordion functionality
-    accordionHeader.addEventListener('click', () => {
-        const accordionContent = document.querySelector('.accordion-content');
-        accordionHeader.classList.toggle('active');
-        if (accordionHeader.classList.contains('active')) {
-            accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-        } else {
-            accordionContent.style.maxHeight = 0;
-        }
-    });
-
-    // --- INITIALIZATION ---
-
-    // Function to run all animations on page load
-    function runAnimations() {
-        // Animate the main score dial
-        animateProgressCircle(MOCK_DATA.score);
-        animateCountUp(scoreDisplay, MOCK_DATA.score, 1);
-        
-        // Animate the confidence percentage
-        animateCountUp(confidenceDisplay, MOCK_DATA.confidence, 0, '%');
-
-        // Animate the detailed metrics
-        animateCountUp(bodyLengthDisplay, MOCK_DATA.metrics.bodyLength, 2);
-        animateCountUp(hipWidthDisplay, MOCK_DATA.metrics.hipWidth, 0, 'px');
-        animateCountUp(toplineAngleDisplay, MOCK_DATA.metrics.toplineAngle, 1, '°');
-    }
-
-    // Run animations after a short delay to ensure the page is rendered
-    setTimeout(runAnimations, 500);
-});
+// Initialize the app
+new PashuMitra();
