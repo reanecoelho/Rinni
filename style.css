@@ -1,37 +1,152 @@
-/* --- PWA-First Design Tokens --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 :root {
-  --primary-green: #2E7D32;
-  --primary-green-light: #4CAF50;
-  --primary-green-dark: #1B5E20;
-  --secondary-blue: #1976D2;
-  --secondary-blue-light: #2196F3;
-  --warning-orange: #F57C00;
-  --error-red: #D32F2F;
-  --success-green: #4CAF50;
-  --text-dark: #212121;
-  --text-light: #757575;
-  --bg-light: #F5F5F5;
-  --bg-white: #FFFFFF;
-  --offline-gray: #757575;
-  --shadow-light: rgba(0,0,0,0.1);
-  --shadow-medium: rgba(0,0,0,0.15);
-  --shadow-dark: rgba(0,0,0,0.25);
+    --color-primary: #4CAF50;
+    --color-primary-dark: #388E3C;
+    --color-warning: #FFC107;
+    --color-text-dark: #263238;
+    --color-text-light: #546E7A;
+    --color-background: #F4F6F8;
+    --color-surface: #FFFFFF;
+    --color-border: #E0E7EE;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
 }
 
-/* Reset & base */
-*{margin:0;padding:0;box-sizing:border-box}
+* { box-sizing: border-box; }
 
-body{
-  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-  background:linear-gradient(135deg,var(--primary-green)0%,var(--primary-green-light)100%);
-  min-height:100vh;
-  padding:10px;
-  overflow-x:hidden;
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-dark);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
 }
 
-/* -------- Container & Layout Styles -------- */
-.container{max-width:420px;margin:0 auto;background:var(--bg-white);border-radius:25px;overflow:hidden;
-  box-shadow:0 25px 50px var(--shadow-medium);min-height:calc(100vh - 20px);position:relative}
+.report-container {
+    width: 100%;
+    max-width: 800px;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.8s ease-out;
+}
 
-/* Header, navigation, upload area, metrics grid, buttons, responsive rules, etc. */
-/* … Paste every rule from the <style> tag here without changes … */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.report-header {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: white;
+    padding: 24px;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    text-align: center;
+}
+.report-header h1 { font-size: 24px; margin: 0; }
+.report-header p { margin: 4px 0 0; opacity: 0.8; }
+
+.report-body { padding: 24px; }
+.report-footer {
+    padding: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text-light);
+    background: var(--color-background);
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+}
+
+.card {
+    background: var(--color-surface);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--color-border);
+}
+
+.health-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: #F9FBF9;
+}
+.health-score-dial {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.score-ring { transform: rotate(-90deg); }
+.score-bg, .score-fill {
+    fill: none;
+    stroke-width: 12;
+}
+.score-bg { stroke: var(--color-border); }
+.score-fill {
+    stroke: url(#scoreGradient);
+    stroke-linecap: round;
+    stroke-dasharray: 439.82; /* 2 * PI * 70 */
+    stroke-dashoffset: 439.82;
+    transition: stroke-dashoffset 2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.score-content {
+    position: absolute;
+    text-align: center;
+}
+.score-value { font-size: 40px; font-weight: 700; line-height: 1; }
+.score-max { font-size: 16px; color: var(--color-text-light); }
+.health-details h2 { font-size: 20px; margin: 0 0 8px 0; }
+.health-details p { margin: 4px 0; font-size: 14px; color: var(--color-text-light); }
+.status-good {
+    color: var(--color-warning);
+    font-weight: 600;
+}
+
+.metrics-card h2, .recommendations-card h2, .card h3 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 8px;
+}
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+.metric-item {
+    background: var(--color-background);
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+.metric-label { display: block; font-size: 14px; color: var(--color-text-light); }
+.metric-value { display: block; font-size: 28px; font-weight: 600; }
+
+.two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.recommendations-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.recommendations-card li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-left: 0;
+}
+.recommendations-card i { color: var(--color-primary); }
+
+@media (max-width: 600px) {
+    .health-summary-card { flex-direction: column; text-align: center; }
+    .metrics-grid, .two-column-grid { grid-template-columns: 1fr; }
+}
